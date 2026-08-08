@@ -53,8 +53,8 @@
         ========================================== */
 
         .app-container {
-            max-width: 1050px;
-            margin: 40px auto;
+            max-width: 1150px;
+            margin: 25px auto;
             padding: 0 15px;
         }
 
@@ -67,16 +67,18 @@
             background: #ffffff;
             border: 1px solid #e8ebef;
             border-radius: 18px;
-            padding: 22px 25px;
+            padding: 28px 30px;
             margin-bottom: 20px;
         }
 
 
-        /* YOUR PHOTO */
+        /* ==========================================
+           LARGE PROFILE PHOTO
+        ========================================== */
 
         .profile-photo {
-            width: 58px;
-            height: 58px;
+            width: 88px;
+            height: 88px;
 
             border-radius: 50%;
 
@@ -84,47 +86,53 @@
 
             flex-shrink: 0;
 
-            border: 2px solid #e9ecef;
+            border: 3px solid #e9ecef;
 
             background: #f8f9fa;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            box-shadow:
+                0 4px 12px rgba(0, 0, 0, 0.12);
         }
 
 
         .profile-photo img {
-            width: 100%;
-            height: 100%;
+            width: 135%;
+            height: 135%;
 
             object-fit: cover;
+
+            object-position: center center;
 
             display: block;
         }
 
 
-        /* HEADER TITLE */
+        /* ==========================================
+           HEADER TITLE
+        ========================================== */
 
         .app-title {
-            font-size: 26px;
+            font-size: 28px;
             font-weight: 700;
-
             margin: 0;
         }
 
 
         .app-subtitle {
-            margin: 4px 0 0;
-
+            margin: 5px 0 0;
             color: #6c757d;
-
             font-size: 14px;
         }
 
 
         .save-status {
             color: #198754;
-
             font-size: 13px;
-
-            margin-top: 6px;
+            margin-top: 7px;
         }
 
 
@@ -139,7 +147,7 @@
 
             border-radius: 18px;
 
-            padding: 25px;
+            padding: 28px;
         }
 
 
@@ -416,7 +424,7 @@
         }
 
 
-        /* GREEN - COMPLETE */
+        /* GREEN COMPLETE */
 
         .complete-btn {
             background: #198754;
@@ -430,7 +438,7 @@
         }
 
 
-        /* BLUE - EDIT */
+        /* BLUE EDIT */
 
         .edit-btn {
             background: #0d6efd;
@@ -444,7 +452,7 @@
         }
 
 
-        /* RED - DELETE */
+        /* RED DELETE */
 
         .delete-btn {
             background: #dc3545;
@@ -624,13 +632,19 @@
         @media (max-width: 768px) {
 
             .app-container {
-                margin: 20px auto;
+                margin: 15px auto;
             }
 
 
             .app-header,
             .main-card {
                 padding: 18px;
+            }
+
+
+            .profile-photo {
+                width: 72px;
+                height: 72px;
             }
 
 
@@ -1347,9 +1361,7 @@
 
 
 
-<!-- ==========================================
-     BOOTSTRAP JS
-========================================== -->
+<!-- Bootstrap JS -->
 
 <script
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
@@ -1360,7 +1372,7 @@
 <script>
 
     /* ==========================================
-       STORAGE
+       LOCAL STORAGE
     ========================================== */
 
     const STORAGE_KEY =
@@ -1372,7 +1384,9 @@
         try {
 
             const saved =
-                localStorage.getItem(STORAGE_KEY);
+                localStorage.getItem(
+                    STORAGE_KEY
+                );
 
 
             if (!saved) {
@@ -1423,7 +1437,7 @@
 
 
     /* ==========================================
-       SAVE TASKS
+       SAVE
     ========================================== */
 
     function saveTasks() {
@@ -1449,7 +1463,7 @@
 
 
     /* ==========================================
-       DOM ELEMENTS
+       DOM
     ========================================== */
 
     const taskForm =
@@ -1490,7 +1504,7 @@
 
 
     /* ==========================================
-       BOOTSTRAP MODALS
+       MODALS
     ========================================== */
 
     const editConfirmModal =
@@ -1587,7 +1601,7 @@
 
 
     /* ==========================================
-       READ / DISPLAY TASKS
+       READ / DISPLAY
     ========================================== */
 
     function renderTasks() {
@@ -1643,9 +1657,6 @@
             );
 
 
-
-        /* EMPTY STATE */
-
         if (
             filteredTasks.length ===
             0
@@ -1663,9 +1674,6 @@
 
         }
 
-
-
-        /* CREATE TASK ELEMENT */
 
         filteredTasks.forEach(
             task => {
@@ -1687,9 +1695,7 @@
 
                 element.innerHTML = `
 
-
                     <div class="task-content">
-
 
                         <p class="task-title">
 
@@ -1698,7 +1704,6 @@
                             )}
 
                         </p>
-
 
                         <div class="task-date">
 
@@ -1712,15 +1717,11 @@
 
                         </div>
 
-
                     </div>
-
 
 
                     <div class="task-actions">
 
-
-                        <!-- COMPLETE -->
 
                         <button
                             class="task-action complete-btn"
@@ -1743,24 +1744,16 @@
                         </button>
 
 
-
-                        <!-- EDIT -->
-
                         <button
                             class="task-action edit-btn"
                             onclick="requestEdit(${task.id})"
                             title="Edit Task"
                         >
 
-                            <i
-                                class="bi bi-pencil"
-                            ></i>
+                            <i class="bi bi-pencil"></i>
 
                         </button>
 
-
-
-                        <!-- DELETE -->
 
                         <button
                             class="task-action delete-btn"
@@ -1768,9 +1761,7 @@
                             title="Delete Task"
                         >
 
-                            <i
-                                class="bi bi-trash3"
-                            ></i>
+                            <i class="bi bi-trash3"></i>
 
                         </button>
 
@@ -1799,7 +1790,6 @@
     ========================================== */
 
     function updateStatistics() {
-
 
         const total =
             tasks.length;
@@ -1861,11 +1851,10 @@
 
 
     /* ==========================================
-       COMPLETE / UNCOMPLETE
+       COMPLETE
     ========================================== */
 
     function toggleComplete(id) {
-
 
         const task =
             tasks.find(
@@ -1895,11 +1884,10 @@
 
 
     /* ==========================================
-       EDIT REQUEST
+       EDIT
     ========================================== */
 
     function requestEdit(id) {
-
 
         selectedTaskId =
             id;
@@ -1909,11 +1897,6 @@
 
     }
 
-
-
-    /* ==========================================
-       CONFIRM EDIT
-    ========================================== */
 
     document
         .getElementById(
@@ -1945,7 +1928,6 @@
                 setTimeout(
                     function() {
 
-
                         editTaskInput.value =
                             task.title;
 
@@ -1963,7 +1945,6 @@
                             },
                             300
                         );
-
 
                     },
                     300
@@ -2036,9 +2017,7 @@
 
 
 
-    /* ==========================================
-       ENTER KEY EDIT
-    ========================================== */
+    /* ENTER TO SAVE EDIT */
 
     editTaskInput.addEventListener(
         "keydown",
@@ -2063,7 +2042,7 @@
 
 
     /* ==========================================
-       DELETE REQUEST
+       DELETE
     ========================================== */
 
     function requestDelete(id) {
@@ -2076,11 +2055,6 @@
 
     }
 
-
-
-    /* ==========================================
-       CONFIRM DELETE
-    ========================================== */
 
     document
         .getElementById(
@@ -2127,11 +2101,10 @@
 
 
     /* ==========================================
-       CLEAR COMPLETED REQUEST
+       CLEAR COMPLETED
     ========================================== */
 
     function openClearModal() {
-
 
         const completedCount =
             tasks.filter(
@@ -2165,11 +2138,6 @@
 
     }
 
-
-
-    /* ==========================================
-       CONFIRM CLEAR
-    ========================================== */
 
     document
         .getElementById(
@@ -2207,7 +2175,6 @@
     searchInput.addEventListener(
         "input",
         function() {
-
 
             currentSearch =
                 this.value.trim();
@@ -2272,7 +2239,7 @@
 
 
     /* ==========================================
-       DATE FORMAT
+       DATE
     ========================================== */
 
     function formatDate(
@@ -2303,7 +2270,6 @@
     function escapeHTML(
         value
     ) {
-
 
         const div =
             document.createElement(
