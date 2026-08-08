@@ -1,0 +1,607 @@
+<script>
+    // ==========================================
+    // LOCAL STORAGE CONFIGURATION
+    // ==========================================
+
+    const STORAGE_KEY = "taskflow_tasks_v1";
+
+
+    // ==========================================
+    // LOAD TASKS FROM BROWSER
+    // ==========================================
+
+    function loadTasks() {
+        try {
+            const savedTasks = localStorage.getItem(STORAGE_KEY);
+
+            if (!savedTasks) {
+                return [];
+            }
+
+            const parsedTasks = JSON.parse(savedTasks);
+
+            return Array.isArray(parsedTasks)
+                ? parsedTasks
+                : [];
+
+        } catch (error) {
+            console.error("Unable to load tasks:", error);
+            return [];
+        }
+    }
+
+
+    // ==========================================
+    // APPLICATION STATE
+    // ==========================================
+
+    let tasks = loadTasks();
+
+    let currentFilter = "all";
+    let currentSearch = "";
+    let editingTaskId = null;
+
+
+    // ==========================================
+    // SAVE TASKS TO BROWSER
+    // ==========================================
+
+    function saveTasks() {
+
+        try {
+
+            localStorage.setItem(
+                STORAGE_KEY,
+                JSON.stringify(tasks)
+            );
+
+            showSaveStatus();
+
+        } catch (error) {
+
+            console.error("Unable to save tasks:", error);
+
+            alert(
+                "Your tasks could not be saved in this browser."
+            );
+        }
+    }
+
+
+    // ==========================================
+    // SAVE STATUS
+    // ==========================================
+
+    function showSaveStatus() {
+
+        const status = document.getElementById("saveStatus");
+
+        if (!status) return;
+
+        status.innerHTML = `
+            <i class="bi bi-check-circle-fill"></i>
+            Saved locally
+        `;
+
+        status.classList.remove("text-danger");
+        status.classList.add("text-success");
+
+        clearTimeout(window.saveStatusTimer);
+
+        window.saveStatusTimer = setTimeout(() => {
+
+            status.innerHTML = `
+                <i class="bi bi-cloud-check"></i>
+                All changes saved
+            `;
+
+        }, 1500);
+    }
+
+
+    // ==========================================
+    // DOM ELEMENTS
+    // ==========================================
+
+    const taskForm =
+        document.getElementById("taskForm");
+
+    const taskInput =
+        document.getElementById("taskInput");
+
+    const taskList =
+        document.getElementById("taskList");
+
+    const emptyState =
+        document.getElementById("emptyState");
+
+    const searchInput =
+        document.getElementById("searchInput");
+
+    const totalCount =
+        document.getElementById("totalCount");
+
+    const activeCount =
+        document.getElementById("activeCount");
+
+    const completedCount =
+        document.getElementById("completedCount");
+
+    const progressBar =
+        document.getElementById("progressBar");
+
+    const progressText =
+        document.getElementById("progressText");
+
+    const editTaskInput =
+        document.getElementById("editTaskInput");
+
+    const saveEditBtn =
+        document.getElementById("saveEditBtn");
+
+    const editModal =
+        new bootstrap.Modal(
+            document.getElementById("editModal")
+        );
+
+
+    // ==========================================
+    // CREATE TASK
+    // ==========================================
+
+    taskForm.addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+        const title = taskInput.value.trim();
+
+        if (!title) {
+            taskInput.focus();
+            return;
+        }
+
+        const newTask = {
+
+            id: Date.now(),
+
+            title: title,
+
+            completed: false,
+
+            createdAt: new Date().toISOString()
+
+        };
+
+        tasks.unshift(newTask);
+
+        saveTasks();
+
+        taskInput.value = "";
+
+        renderTasks();
+
+        taskInput.focus();
+    });
+
+
+    // ==========================================
+    // READ / DISPLAY TASKS
+    // ==========================================
+
+    function renderTasks() {
+
+        taskList.innerHTML = "";
+
+        const filteredTasks = tasks.filter(task => {
+
+            const matchesSearch =
+                task.title
+                    .toLowerCase()
+                    .includes(
+                        currentSearch.toLowerCase()
+                    );
+
+            if (!matchesSearch) {
+                return false;
+            }
+
+            if (currentFilter === "active") {
+                return !task.completed;
+            }
+
+            if (currentFilter === "completed") {
+                return task.completed;
+            }
+
+            return true;
+        });
+
+
+        if (filteredTasks.length === 0) {
+
+            emptyState.classList.remove("d-none");
+
+        } else {
+
+            emptyState.classList.add("d-none");
+        }
+
+
+        filteredTasks.forEach(task => {
+
+            const taskElement =
+                document.createElement("div");
+
+            taskElement.className =
+                `task-item ${
+                    task.completed
+                        ? "completed"
+                        : ""
+                }`;
+
+            taskElement.innerHTML = `
+
+                <div
+                    class="task-check"
+                    onclick="toggleTask(${task.id})"
+                >
+                    <i class="bi bi-check-lg"></i>
+                </div>
+
+                <div class="task-content">
+
+                    <p class="task-title">
+                        ${escapeHTML(task.title)}
+                    </p>
+
+                    <div class="task-date">
+
+                        <i class="bi bi-clock me-1"></i>
+
+                        ${formatDate(task.createdAt)}
+
+                    </div>
+
+                </div>
+
+                <div class="task-actions">
+
+                    <button
+                        class="action-btn"
+                        onclick="openEditModal(${task.id})"
+                        title="Edit task"
+                    >
+                        <i class="bi bi-pencil"></i>
+                    </button>
+
+                    <button
+                        class="action-btn delete"
+                        onclick="deleteTask(${task.id})"
+                        title="Delete task"
+                    >
+                        <i class="bi bi-trash3"></i>
+                    </button>
+
+                </div>
+            `;
+
+            taskList.appendChild(taskElement);
+
+        });
+
+        updateStatistics();
+    }
+
+
+    // ==========================================
+    // UPDATE STATISTICS
+    // ==========================================
+
+    function updateStatistics() {
+
+        const total = tasks.length;
+
+        const completed =
+            tasks.filter(
+                task => task.completed
+            ).length;
+
+        const active =
+            total - completed;
+
+        const percentage =
+            total === 0
+                ? 0
+                : Math.round(
+                    (completed / total) * 100
+                );
+
+
+        totalCount.textContent = total;
+
+        activeCount.textContent = active;
+
+        completedCount.textContent = completed;
+
+        progressBar.style.width =
+            `${percentage}%`;
+
+        progressText.textContent =
+            `${percentage}%`;
+    }
+
+
+    // ==========================================
+    // COMPLETE / UNCOMPLETE
+    // ==========================================
+
+    function toggleTask(id) {
+
+        const task =
+            tasks.find(
+                task => task.id === id
+            );
+
+        if (!task) return;
+
+        task.completed =
+            !task.completed;
+
+        saveTasks();
+
+        renderTasks();
+    }
+
+
+    // ==========================================
+    // DELETE TASK
+    // ==========================================
+
+    function deleteTask(id) {
+
+        const task =
+            tasks.find(
+                task => task.id === id
+            );
+
+        if (!task) return;
+
+        const confirmed =
+            confirm(
+                `Delete "${task.title}"?`
+            );
+
+        if (!confirmed) return;
+
+        tasks =
+            tasks.filter(
+                task => task.id !== id
+            );
+
+        saveTasks();
+
+        renderTasks();
+    }
+
+
+    // ==========================================
+    // OPEN EDIT MODAL
+    // ==========================================
+
+    function openEditModal(id) {
+
+        const task =
+            tasks.find(
+                task => task.id === id
+            );
+
+        if (!task) return;
+
+        editingTaskId = id;
+
+        editTaskInput.value =
+            task.title;
+
+        editModal.show();
+
+        setTimeout(() => {
+
+            editTaskInput.focus();
+
+            editTaskInput.select();
+
+        }, 300);
+    }
+
+
+    // ==========================================
+    // UPDATE TASK
+    // ==========================================
+
+    saveEditBtn.addEventListener(
+        "click",
+        function() {
+
+            const newTitle =
+                editTaskInput.value.trim();
+
+            if (!newTitle) {
+
+                editTaskInput.focus();
+
+                return;
+            }
+
+            const task =
+                tasks.find(
+                    task =>
+                        task.id ===
+                        editingTaskId
+                );
+
+            if (!task) return;
+
+            task.title = newTitle;
+
+            saveTasks();
+
+            renderTasks();
+
+            editModal.hide();
+
+            editingTaskId = null;
+        }
+    );
+
+
+    // ==========================================
+    // ENTER TO SAVE EDIT
+    // ==========================================
+
+    editTaskInput.addEventListener(
+        "keydown",
+        function(event) {
+
+            if (event.key === "Enter") {
+
+                saveEditBtn.click();
+
+            }
+
+        }
+    );
+
+
+    // ==========================================
+    // SEARCH
+    // ==========================================
+
+    searchInput.addEventListener(
+        "input",
+        function() {
+
+            currentSearch =
+                this.value.trim();
+
+            renderTasks();
+
+        }
+    );
+
+
+    // ==========================================
+    // FILTER
+    // ==========================================
+
+    document
+        .querySelectorAll(".filter-btn")
+        .forEach(button => {
+
+            button.addEventListener(
+                "click",
+                function() {
+
+                    document
+                        .querySelectorAll(
+                            ".filter-btn"
+                        )
+                        .forEach(btn =>
+                            btn.classList
+                                .remove("active")
+                        );
+
+                    this.classList
+                        .add("active");
+
+                    currentFilter =
+                        this.dataset.filter;
+
+                    renderTasks();
+                }
+            );
+
+        });
+
+
+    // ==========================================
+    // CLEAR COMPLETED
+    // ==========================================
+
+    function clearCompleted() {
+
+        const completedTasks =
+            tasks.filter(
+                task => task.completed
+            );
+
+        if (completedTasks.length === 0) {
+
+            alert(
+                "There are no completed tasks to clear."
+            );
+
+            return;
+        }
+
+        const confirmed =
+            confirm(
+                `Delete ${completedTasks.length} completed task(s)?`
+            );
+
+        if (!confirmed) return;
+
+        tasks =
+            tasks.filter(
+                task => !task.completed
+            );
+
+        saveTasks();
+
+        renderTasks();
+    }
+
+
+    // ==========================================
+    // FORMAT DATE
+    // ==========================================
+
+    function formatDate(dateString) {
+
+        const date =
+            new Date(dateString);
+
+        return date.toLocaleDateString(
+            undefined,
+            {
+                year: "numeric",
+                month: "short",
+                day: "numeric"
+            }
+        );
+    }
+
+
+    // ==========================================
+    // HTML SECURITY
+    // ==========================================
+
+    function escapeHTML(value) {
+
+        const div =
+            document.createElement("div");
+
+        div.textContent = value;
+
+        return div.innerHTML;
+    }
+
+
+    // ==========================================
+    // INITIAL LOAD
+    // ==========================================
+
+    renderTasks();
+
+    showSaveStatus();
+
+</script>
