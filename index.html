@@ -1,46 +1,1122 @@
-<header class="app-header">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <div class="header-content">
+<title>TaskFlow - Arun Adhikari</title>
 
-        <div class="brand-section">
+<!-- Bootstrap 5 -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-            <div class="header-photo">
-                <img
-                    src="logo 2.png"
-                    alt="Arun Adhikari"
-                >
-            </div>
+<!-- Bootstrap Icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-            <div>
+<style>
+* {
+    box-sizing: border-box;
+}
 
-                <h1 class="brand-title">
-                    TaskFlow
-                </h1>
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: #f5f7fa;
+    color: #212529;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+}
 
-                <p class="brand-subtitle">
-                    Organize your tasks and stay productive.
+.app-container {
+    max-width: 1150px;
+    margin: 30px auto;
+    padding: 0 18px;
+}
+
+/* MAIN CARD */
+.main-card {
+    background: #fff;
+    border: 1px solid #e2e6ea;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 5px 20px rgba(0,0,0,.04);
+}
+
+/* CENTER PROFILE */
+.center-profile {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.center-profile-photo {
+    width: 145px;
+    height: 145px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 5px auto 15px;
+    background: #eee;
+    border: 5px solid white;
+    box-shadow: 0 6px 20px rgba(0,0,0,.16);
+}
+
+.center-profile-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+.center-profile h2 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.center-profile p {
+    margin: 5px 0 0;
+    color: #6c757d;
+    font-size: 15px;
+}
+
+/* ADD TASK */
+.add-task-box {
+    background: #f8f9fa;
+    border: 1px solid #e4e7eb;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 25px;
+}
+
+.task-input {
+    height: 52px;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+.add-btn {
+    height: 52px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+/* STATISTICS */
+.stat-card {
+    background: white;
+    border: 1px solid #e2e6ea;
+    border-radius: 14px;
+    padding: 20px;
+}
+
+.stat-label {
+    color: #6c757d;
+    font-size: 15px;
+    margin-bottom: 6px;
+}
+
+.stat-number {
+    font-size: 27px;
+    font-weight: 700;
+}
+
+/* PROGRESS */
+.progress-section {
+    margin-top: 28px;
+}
+
+.progress {
+    height: 9px;
+    border-radius: 20px;
+}
+
+/* SEARCH */
+.toolbar {
+    margin-top: 30px;
+    margin-bottom: 22px;
+}
+
+.search-input {
+    height: 48px;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+.filter-box {
+    display: flex;
+    gap: 4px;
+    background: #f1f3f5;
+    border-radius: 10px;
+    padding: 4px;
+    height: 48px;
+}
+
+.filter-btn {
+    flex: 1;
+    border: none;
+    background: transparent;
+    border-radius: 8px;
+    color: #6c757d;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.filter-btn.active {
+    background: white;
+    color: #0d6efd;
+    box-shadow: 0 2px 7px rgba(0,0,0,.08);
+}
+
+/* TASK LIST */
+.task-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.task-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 17px;
+    background: white;
+    border: 1px solid #e1e5e9;
+    border-radius: 14px;
+    transition: .2s;
+}
+
+.task-item:hover {
+    box-shadow: 0 5px 16px rgba(0,0,0,.06);
+}
+
+.task-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.task-title {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    word-break: break-word;
+}
+
+.task-date {
+    margin-top: 6px;
+    font-size: 13px;
+    color: #8a9299;
+}
+
+.completed-task {
+    background: #f7fff9;
+}
+
+.completed-task .task-title {
+    text-decoration: line-through;
+    color: #8b9299;
+}
+
+/* BUTTONS */
+.task-actions {
+    display: flex;
+    gap: 7px;
+}
+
+.action-btn {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 16px;
+}
+
+/* GREEN */
+.complete-btn {
+    background: #198754;
+}
+
+.complete-btn:hover {
+    background: #157347;
+}
+
+/* BLUE */
+.edit-btn {
+    background: #0d6efd;
+}
+
+.edit-btn:hover {
+    background: #0b5ed7;
+}
+
+/* RED */
+.delete-btn {
+    background: #dc3545;
+}
+
+.delete-btn:hover {
+    background: #bb2d3b;
+}
+
+/* EMPTY */
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: #6c757d;
+}
+
+.empty-icon {
+    width: 70px;
+    height: 70px;
+    margin: auto auto 15px;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f1f3f5;
+    font-size: 32px;
+    color: #adb5bd;
+}
+
+/* CLEAR BUTTON */
+.clear-btn {
+    border: 1px solid #dce1e6;
+    background: white;
+    color: #495057;
+    border-radius: 10px;
+    padding: 10px 15px;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+/* MOBILE */
+@media(max-width:768px) {
+
+    .app-container {
+        margin: 15px auto;
+    }
+
+    .main-card {
+        padding: 20px;
+    }
+
+    .center-profile-photo {
+        width: 120px;
+        height: 120px;
+    }
+
+    .task-item {
+        align-items: flex-start;
+    }
+
+    .task-actions {
+        flex-wrap: wrap;
+    }
+
+    .action-btn {
+        width: 36px;
+        height: 36px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="app-container">
+
+<main class="main-card">
+
+<!-- PROFILE PHOTO -->
+<section class="center-profile">
+
+    <div class="center-profile-photo">
+        <img src="logo 2.png" alt="Arun Adhikari">
+    </div>
+
+    <h2>Arun Adhikari</h2>
+
+    <p>Personal Task Management</p>
+
+</section>
+
+
+<!-- ADD TASK -->
+<section class="add-task-box">
+
+<form id="taskForm">
+
+<div class="row g-2">
+
+    <div class="col-md-9">
+        <input
+            type="text"
+            id="taskInput"
+            class="form-control task-input"
+            placeholder="What needs to be done?"
+            autocomplete="off"
+        >
+    </div>
+
+    <div class="col-md-3">
+        <button
+            type="submit"
+            class="btn btn-primary w-100 add-btn"
+        >
+            <i class="bi bi-plus-lg"></i>
+            Add Task
+        </button>
+    </div>
+
+</div>
+
+</form>
+
+</section>
+
+
+<!-- STATISTICS -->
+<section>
+
+<div class="row g-3">
+
+    <div class="col-md-4">
+        <div class="stat-card">
+            <div class="stat-label">Total Tasks</div>
+            <div class="stat-number" id="totalCount">0</div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="stat-card">
+            <div class="stat-label">Active Tasks</div>
+            <div class="stat-number text-primary" id="activeCount">0</div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="stat-card">
+            <div class="stat-label">Completed Tasks</div>
+            <div class="stat-number text-success" id="completedCount">0</div>
+        </div>
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- PROGRESS -->
+<section class="progress-section">
+
+<div class="d-flex justify-content-between mb-2">
+
+    <span>Completion Progress</span>
+
+    <strong id="progressText">0%</strong>
+
+</div>
+
+<div class="progress">
+
+    <div
+        id="progressBar"
+        class="progress-bar bg-success"
+        style="width:0%"
+    ></div>
+
+</div>
+
+</section>
+
+
+<!-- SEARCH AND FILTER -->
+<section class="toolbar">
+
+<div class="row g-2">
+
+    <div class="col-md-7">
+
+        <input
+            type="text"
+            id="searchInput"
+            class="form-control search-input"
+            placeholder="Search your tasks..."
+        >
+
+    </div>
+
+    <div class="col-md-5">
+
+        <div class="filter-box">
+
+            <button class="filter-btn active" data-filter="all">
+                All
+            </button>
+
+            <button class="filter-btn" data-filter="active">
+                Active
+            </button>
+
+            <button class="filter-btn" data-filter="completed">
+                Completed
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- TASK LIST -->
+<section id="taskList" class="task-list"></section>
+
+
+<!-- EMPTY -->
+<section id="emptyState" class="empty-state">
+
+    <div class="empty-icon">
+        <i class="bi bi-clipboard-check"></i>
+    </div>
+
+    <h4>No tasks yet</h4>
+
+    <p>Add your first task and start being productive.</p>
+
+</section>
+
+
+<!-- CLEAR COMPLETED -->
+<div class="text-end mt-4">
+
+    <button
+        class="clear-btn"
+        onclick="clearCompleted()"
+    >
+        <i class="bi bi-eraser"></i>
+        Clear Completed
+    </button>
+
+</div>
+
+</main>
+
+</div>
+
+
+<!-- EDIT MODAL -->
+<div class="modal fade" id="editModal">
+
+<div class="modal-dialog modal-dialog-centered">
+
+<div class="modal-content">
+
+<div class="modal-header">
+
+    <h5 class="modal-title">Edit Task</h5>
+
+    <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="modal"
+    ></button>
+
+</div>
+
+<div class="modal-body">
+
+    <input
+        type="text"
+        id="editInput"
+        class="form-control task-input"
+    >
+
+</div>
+
+<div class="modal-footer">
+
+    <button
+        class="btn btn-secondary"
+        data-bs-dismiss="modal"
+    >
+        Cancel
+    </button>
+
+    <button
+        class="btn btn-primary"
+        onclick="saveEdit()"
+    >
+        Save Changes
+    </button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- BOOTSTRAP -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<script>
+
+/* =========================
+   STORAGE
+========================= */
+
+const STORAGE_KEY = "arun_taskflow_tasks";
+
+let tasks =
+    JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+
+let currentFilter = "all";
+
+let currentSearch = "";
+
+let editingId = null;
+
+
+/* =========================
+   ELEMENTS
+========================= */
+
+const taskForm =
+    document.getElementById("taskForm");
+
+const taskInput =
+    document.getElementById("taskInput");
+
+const taskList =
+    document.getElementById("taskList");
+
+const emptyState =
+    document.getElementById("emptyState");
+
+const searchInput =
+    document.getElementById("searchInput");
+
+
+/* =========================
+   SAVE
+========================= */
+
+function saveTasks() {
+
+    localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(tasks)
+    );
+
+}
+
+
+/* =========================
+   ADD TASK
+========================= */
+
+taskForm.addEventListener("submit", function(e) {
+
+    e.preventDefault();
+
+    const title =
+        taskInput.value.trim();
+
+    if (!title) {
+
+        alert("Please enter a task.");
+
+        taskInput.focus();
+
+        return;
+    }
+
+    tasks.unshift({
+
+        id: Date.now(),
+
+        title: title,
+
+        completed: false,
+
+        createdAt: new Date().toISOString()
+
+    });
+
+    saveTasks();
+
+    taskInput.value = "";
+
+    renderTasks();
+
+    taskInput.focus();
+
+});
+
+
+/* =========================
+   DISPLAY TASKS
+========================= */
+
+function renderTasks() {
+
+    taskList.innerHTML = "";
+
+    let filtered =
+        tasks.filter(task => {
+
+            const searchMatch =
+                task.title
+                    .toLowerCase()
+                    .includes(
+                        currentSearch.toLowerCase()
+                    );
+
+            if (!searchMatch) return false;
+
+            if (
+                currentFilter === "active"
+            ) {
+                return !task.completed;
+            }
+
+            if (
+                currentFilter === "completed"
+            ) {
+                return task.completed;
+            }
+
+            return true;
+
+        });
+
+
+    emptyState.style.display =
+        filtered.length === 0
+            ? "block"
+            : "none";
+
+
+    filtered.forEach(task => {
+
+        const item =
+            document.createElement("div");
+
+        item.className =
+            "task-item" +
+            (task.completed
+                ? " completed-task"
+                : "");
+
+
+        item.innerHTML = `
+
+            <div class="task-content">
+
+                <p class="task-title">
+                    ${escapeHTML(task.title)}
                 </p>
 
-                <div
-                    class="save-status"
-                    id="saveStatus"
-                >
-                    <i class="bi bi-cloud-check"></i>
-                    All changes saved
+                <div class="task-date">
+                    <i class="bi bi-calendar3"></i>
+                    ${formatDate(task.createdAt)}
                 </div>
 
             </div>
 
-        </div>
 
-        <button
-            class="clear-btn"
-            onclick="openClearConfirmation()"
-        >
-            <i class="bi bi-eraser me-1"></i>
-            Clear Completed
-        </button>
+            <div class="task-actions">
 
-    </div>
+                <!-- GREEN COMPLETE -->
 
-</header>
+                <button
+                    class="action-btn complete-btn"
+                    onclick="completeTask(${task.id})"
+                    title="Complete"
+                >
+                    <i class="bi ${
+                        task.completed
+                        ? "bi-arrow-counterclockwise"
+                        : "bi-check-lg"
+                    }"></i>
+                </button>
+
+
+                <!-- BLUE EDIT -->
+
+                <button
+                    class="action-btn edit-btn"
+                    onclick="editTask(${task.id})"
+                    title="Edit"
+                >
+                    <i class="bi bi-pencil"></i>
+                </button>
+
+
+                <!-- RED DELETE -->
+
+                <button
+                    class="action-btn delete-btn"
+                    onclick="deleteTask(${task.id})"
+                    title="Delete"
+                >
+                    <i class="bi bi-trash3"></i>
+                </button>
+
+            </div>
+        `;
+
+
+        taskList.appendChild(item);
+
+    });
+
+
+    updateStats();
+
+}
+
+
+/* =========================
+   COMPLETE
+========================= */
+
+function completeTask(id) {
+
+    const task =
+        tasks.find(t => t.id === id);
+
+    if (!task) return;
+
+    task.completed =
+        !task.completed;
+
+    saveTasks();
+
+    renderTasks();
+
+}
+
+
+/* =========================
+   EDIT
+========================= */
+
+function editTask(id) {
+
+    const task =
+        tasks.find(t => t.id === id);
+
+    if (!task) return;
+
+    const confirmEdit =
+        confirm(
+            "Are you sure you want to edit this task?"
+        );
+
+    if (!confirmEdit) return;
+
+    editingId = id;
+
+    document.getElementById(
+        "editInput"
+    ).value = task.title;
+
+
+    const modal =
+        new bootstrap.Modal(
+            document.getElementById("editModal")
+        );
+
+    modal.show();
+
+}
+
+
+/* =========================
+   SAVE EDIT
+========================= */
+
+function saveEdit() {
+
+    const newTitle =
+        document.getElementById(
+            "editInput"
+        ).value.trim();
+
+
+    if (!newTitle) {
+
+        alert("Task cannot be empty.");
+
+        return;
+
+    }
+
+
+    const task =
+        tasks.find(t => t.id === editingId);
+
+
+    if (!task) return;
+
+
+    task.title = newTitle;
+
+    saveTasks();
+
+    renderTasks();
+
+
+    const modalElement =
+        document.getElementById(
+            "editModal"
+        );
+
+
+    const modal =
+        bootstrap.Modal.getInstance(
+            modalElement
+        );
+
+
+    modal.hide();
+
+    editingId = null;
+
+}
+
+
+/* =========================
+   DELETE
+========================= */
+
+function deleteTask(id) {
+
+    const confirmDelete =
+        confirm(
+            "Are you sure you want to delete this task?"
+        );
+
+    if (!confirmDelete) return;
+
+
+    tasks =
+        tasks.filter(
+            task => task.id !== id
+        );
+
+
+    saveTasks();
+
+    renderTasks();
+
+}
+
+
+/* =========================
+   CLEAR COMPLETED
+========================= */
+
+function clearCompleted() {
+
+    const completed =
+        tasks.filter(
+            task => task.completed
+        ).length;
+
+
+    if (completed === 0) {
+
+        alert(
+            "There are no completed tasks."
+        );
+
+        return;
+
+    }
+
+
+    const confirmClear =
+        confirm(
+            `Are you sure you want to clear ${completed} completed task(s)?`
+        );
+
+
+    if (!confirmClear) return;
+
+
+    tasks =
+        tasks.filter(
+            task => !task.completed
+        );
+
+
+    saveTasks();
+
+    renderTasks();
+
+}
+
+
+/* =========================
+   SEARCH
+========================= */
+
+searchInput.addEventListener(
+    "input",
+    function() {
+
+        currentSearch =
+            this.value;
+
+        renderTasks();
+
+    }
+);
+
+
+/* =========================
+   FILTER
+========================= */
+
+document
+    .querySelectorAll(".filter-btn")
+    .forEach(button => {
+
+        button.addEventListener(
+            "click",
+            function() {
+
+                document
+                    .querySelectorAll(".filter-btn")
+                    .forEach(btn =>
+                        btn.classList.remove("active")
+                    );
+
+
+                this.classList.add("active");
+
+
+                currentFilter =
+                    this.dataset.filter;
+
+
+                renderTasks();
+
+            }
+        );
+
+    });
+
+
+/* =========================
+   STATISTICS
+========================= */
+
+function updateStats() {
+
+    const total =
+        tasks.length;
+
+
+    const completed =
+        tasks.filter(
+            task => task.completed
+        ).length;
+
+
+    const active =
+        total - completed;
+
+
+    const percentage =
+        total === 0
+        ? 0
+        : Math.round(
+            completed / total * 100
+        );
+
+
+    document.getElementById(
+        "totalCount"
+    ).textContent = total;
+
+
+    document.getElementById(
+        "activeCount"
+    ).textContent = active;
+
+
+    document.getElementById(
+        "completedCount"
+    ).textContent = completed;
+
+
+    document.getElementById(
+        "progressText"
+    ).textContent =
+        percentage + "%";
+
+
+    document.getElementById(
+        "progressBar"
+    ).style.width =
+        percentage + "%";
+
+}
+
+
+/* =========================
+   DATE
+========================= */
+
+function formatDate(date) {
+
+    return new Date(date)
+        .toLocaleDateString(
+            "en-US",
+            {
+                year: "numeric",
+                month: "short",
+                day: "numeric"
+            }
+        );
+
+}
+
+
+/* =========================
+   SECURITY
+========================= */
+
+function escapeHTML(text) {
+
+    const div =
+        document.createElement("div");
+
+    div.textContent = text;
+
+    return div.innerHTML;
+
+}
+
+
+/* =========================
+   START
+========================= */
+
+renderTasks();
+
+</script>
+
+</body>
+</html>
