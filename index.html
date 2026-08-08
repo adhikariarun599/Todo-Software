@@ -4,9 +4,14 @@
 <head>
 
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Todo-Software | TaskFlow</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>TaskFlow - Todo Software</title>
+
 
     <!-- Bootstrap 5 -->
     <link
@@ -14,262 +19,433 @@
         rel="stylesheet"
     >
 
+
     <!-- Bootstrap Icons -->
     <link
         rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
     >
 
+
     <style>
 
-        /* ==========================================
+        /* =====================================================
            GLOBAL
-        ========================================== */
+        ===================================================== */
 
         * {
             box-sizing: border-box;
         }
 
+
         body {
+
             margin: 0;
+
             min-height: 100vh;
-            background: #f6f8fb;
+
+            background: #f5f7fa;
+
             color: #212529;
 
             font-family:
-                Inter,
-                system-ui,
-                -apple-system,
-                BlinkMacSystemFont,
-                "Segoe UI",
+                Arial,
+                Helvetica,
                 sans-serif;
 
-            font-size: 15px;
+            font-size: 16px;
+
         }
 
 
-        /* ==========================================
+        /* =====================================================
            MAIN CONTAINER
-        ========================================== */
+        ===================================================== */
 
         .app-container {
+
             max-width: 1150px;
-            margin: 25px auto;
-            padding: 0 15px;
+
+            margin: 30px auto;
+
+            padding: 0 18px;
+
         }
 
 
-        /* ==========================================
+        /* =====================================================
            HEADER
-        ========================================== */
+        ===================================================== */
 
         .app-header {
+
             background: #ffffff;
-            border: 1px solid #e8ebef;
-            border-radius: 18px;
-            padding: 28px 30px;
-            margin-bottom: 20px;
+
+            border: 1px solid #e2e6ea;
+
+            border-radius: 20px;
+
+            padding: 28px 32px;
+
+            margin-bottom: 22px;
+
+            box-shadow:
+                0 5px 20px rgba(0, 0, 0, 0.04);
+
         }
 
 
-        /* ==========================================
-           LARGE PROFILE PHOTO
-        ========================================== */
+        .header-content {
 
-        .profile-photo {
-            width: 88px;
-            height: 88px;
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 25px;
+
+        }
+
+
+        .brand-section {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 20px;
+
+        }
+
+
+        /* =====================================================
+           HEADER PROFILE PHOTO
+        ===================================================== */
+
+        .header-photo {
+
+            width: 90px;
+
+            height: 90px;
 
             border-radius: 50%;
 
             overflow: hidden;
 
-            flex-shrink: 0;
-
-            border: 3px solid #e9ecef;
-
-            background: #f8f9fa;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            border: 4px solid #ffffff;
 
             box-shadow:
-                0 4px 12px rgba(0, 0, 0, 0.12);
+                0 3px 12px rgba(0, 0, 0, 0.15);
+
+            background: #eeeeee;
+
+            flex-shrink: 0;
+
         }
 
 
-        .profile-photo img {
-            width: 135%;
-            height: 135%;
+        .header-photo img {
+
+            width: 100%;
+
+            height: 100%;
 
             object-fit: cover;
 
-            object-position: center center;
+            object-position: center;
 
             display: block;
+
         }
 
 
-        /* ==========================================
-           HEADER TITLE
-        ========================================== */
+        .brand-title {
 
-        .app-title {
-            font-size: 28px;
-            font-weight: 700;
             margin: 0;
+
+            font-size: 30px;
+
+            font-weight: 700;
+
+            color: #111827;
+
         }
 
 
-        .app-subtitle {
+        .brand-subtitle {
+
             margin: 5px 0 0;
+
             color: #6c757d;
-            font-size: 14px;
+
+            font-size: 15px;
+
         }
 
 
         .save-status {
+
+            margin-top: 8px;
+
             color: #198754;
-            font-size: 13px;
-            margin-top: 7px;
+
+            font-size: 14px;
+
         }
 
 
-        /* ==========================================
+        /* =====================================================
            MAIN CARD
-        ========================================== */
+        ===================================================== */
 
         .main-card {
+
             background: #ffffff;
 
-            border: 1px solid #e8ebef;
+            border: 1px solid #e2e6ea;
 
-            border-radius: 18px;
+            border-radius: 20px;
 
-            padding: 28px;
+            padding: 30px;
+
+            box-shadow:
+                0 5px 20px rgba(0, 0, 0, 0.04);
+
         }
 
 
-        /* ==========================================
-           ADD TASK AREA
-        ========================================== */
+        /* =====================================================
+           CENTER PROFILE SECTION
+        ===================================================== */
 
-        .add-task-area {
+        .center-profile {
+
+            text-align: center;
+
+            margin-bottom: 28px;
+
+            padding: 10px 0 5px;
+
+        }
+
+
+        .center-profile-photo {
+
+            width: 135px;
+
+            height: 135px;
+
+            border-radius: 50%;
+
+            overflow: hidden;
+
+            margin: 0 auto 15px;
+
+            border: 5px solid #ffffff;
+
+            background: #eeeeee;
+
+            box-shadow:
+                0 6px 20px rgba(0, 0, 0, 0.16);
+
+        }
+
+
+        .center-profile-photo img {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+            object-position: center;
+
+            display: block;
+
+        }
+
+
+        .center-profile h2 {
+
+            margin: 0;
+
+            font-size: 23px;
+
+            font-weight: 700;
+
+            color: #212529;
+
+        }
+
+
+        .center-profile p {
+
+            margin: 5px 0 0;
+
+            color: #6c757d;
+
+            font-size: 15px;
+
+        }
+
+
+        /* =====================================================
+           ADD TASK
+        ===================================================== */
+
+        .add-task-box {
+
             background: #f8f9fa;
 
-            border: 1px solid #e9ecef;
+            border: 1px solid #e4e7eb;
+
+            border-radius: 15px;
 
             padding: 20px;
 
-            border-radius: 14px;
-
             margin-bottom: 25px;
+
         }
 
 
         .task-input {
-            height: 46px;
+
+            height: 50px;
 
             border-radius: 10px;
 
-            border: 1px solid #dee2e6;
+            font-size: 16px;
 
-            font-size: 14px;
+            border: 1px solid #d8dde3;
+
         }
 
 
         .task-input:focus {
+
             border-color: #0d6efd;
 
             box-shadow:
-                0 0 0 0.15rem
-                rgba(13, 110, 253, 0.10);
+                0 0 0 3px rgba(
+                    13,
+                    110,
+                    253,
+                    0.10
+                );
+
         }
 
 
-        .add-button {
-            height: 46px;
+        .add-btn {
+
+            height: 50px;
 
             border-radius: 10px;
 
-            font-size: 14px;
+            font-size: 16px;
 
             font-weight: 600;
+
         }
 
 
-        /* ==========================================
+        /* =====================================================
            STATISTICS
-        ========================================== */
+        ===================================================== */
 
         .stat-card {
+
             background: #ffffff;
 
-            border: 1px solid #e9ecef;
+            border: 1px solid #e2e6ea;
 
-            border-radius: 13px;
+            border-radius: 14px;
 
-            padding: 17px;
+            padding: 20px;
+
         }
 
 
-        .stat-title {
+        .stat-label {
+
             color: #6c757d;
 
-            font-size: 13px;
+            font-size: 15px;
 
-            margin-bottom: 4px;
+            margin-bottom: 6px;
+
         }
 
 
         .stat-number {
-            font-size: 22px;
+
+            font-size: 26px;
 
             font-weight: 700;
+
         }
 
 
-        /* ==========================================
+        /* =====================================================
            PROGRESS
-        ========================================== */
+        ===================================================== */
+
+        .progress-section {
+
+            margin-top: 28px;
+
+        }
+
 
         .progress {
-            height: 8px;
+
+            height: 9px;
+
+            border-radius: 20px;
 
             background: #e9ecef;
 
-            border-radius: 20px;
         }
 
 
         .progress-bar {
+
             border-radius: 20px;
+
         }
 
 
-        /* ==========================================
-           TOOLBAR
-        ========================================== */
+        /* =====================================================
+           SEARCH + FILTER
+        ===================================================== */
 
         .toolbar {
-            margin-top: 25px;
 
-            margin-bottom: 20px;
+            margin-top: 30px;
+
+            margin-bottom: 22px;
+
         }
 
 
         .search-input {
-            height: 43px;
+
+            height: 48px;
 
             border-radius: 10px;
 
-            font-size: 14px;
+            font-size: 16px;
+
         }
 
 
-        .filter-wrapper {
+        .filter-box {
+
             display: flex;
+
+            gap: 4px;
 
             background: #f1f3f5;
 
@@ -277,60 +453,58 @@
 
             padding: 4px;
 
-            gap: 4px;
+            height: 48px;
+
         }
 
 
         .filter-btn {
+
+            flex: 1;
+
             border: none;
 
             background: transparent;
 
-            color: #6c757d;
-
             border-radius: 8px;
 
-            padding: 8px 14px;
+            color: #6c757d;
 
-            font-size: 14px;
+            font-size: 15px;
 
             font-weight: 600;
 
-            flex: 1;
         }
 
 
         .filter-btn.active {
+
             background: #ffffff;
 
             color: #0d6efd;
 
             box-shadow:
-                0 2px 6px rgba(0, 0, 0, 0.08);
+                0 2px 7px rgba(0, 0, 0, 0.08);
+
         }
 
 
-        /* ==========================================
-           TASK LIST
-        ========================================== */
+        /* =====================================================
+           TASK
+        ===================================================== */
 
         .task-list {
+
             display: flex;
 
             flex-direction: column;
 
-            gap: 11px;
+            gap: 12px;
+
         }
 
 
         .task-item {
-            background: #ffffff;
-
-            border: 1px solid #e7eaee;
-
-            border-radius: 14px;
-
-            padding: 14px 15px;
 
             display: flex;
 
@@ -338,79 +512,102 @@
 
             gap: 15px;
 
+            padding: 17px;
+
+            background: #ffffff;
+
+            border: 1px solid #e1e5e9;
+
+            border-radius: 14px;
+
             transition: 0.2s ease;
+
         }
 
 
         .task-item:hover {
-            border-color: #d7dce2;
 
             box-shadow:
-                0 5px 18px rgba(0, 0, 0, 0.05);
-        }
+                0 5px 16px rgba(0, 0, 0, 0.06);
 
+            border-color: #d5dbe1;
 
-        .task-item.completed {
-            background: #f8fff9;
         }
 
 
         .task-content {
+
             flex: 1;
 
             min-width: 0;
+
         }
 
 
         .task-title {
+
             margin: 0;
 
-            font-size: 15px;
+            font-size: 16px;
 
             font-weight: 600;
 
             word-break: break-word;
-        }
 
-
-        .task-item.completed .task-title {
-            text-decoration: line-through;
-
-            color: #8b9299;
         }
 
 
         .task-date {
-            color: #8a929a;
 
-            font-size: 12px;
+            margin-top: 6px;
 
-            margin-top: 5px;
+            font-size: 13px;
+
+            color: #8a9299;
+
         }
 
 
-        /* ==========================================
-           TASK ACTION BUTTONS
-        ========================================== */
+        .completed-task {
+
+            background: #f7fff9;
+
+        }
+
+
+        .completed-task .task-title {
+
+            text-decoration: line-through;
+
+            color: #8b9299;
+
+        }
+
+
+        /* =====================================================
+           ACTION BUTTONS
+        ===================================================== */
 
         .task-actions {
+
             display: flex;
 
             gap: 7px;
 
             flex-shrink: 0;
+
         }
 
 
-        .task-action {
-            width: 36px;
-            height: 36px;
+        .action-btn {
+
+            width: 40px;
+
+            height: 40px;
 
             border: none;
 
             border-radius: 9px;
-
-            color: #ffffff;
 
             display: flex;
 
@@ -418,102 +615,87 @@
 
             justify-content: center;
 
-            font-size: 14px;
+            color: #ffffff;
+
+            font-size: 16px;
 
             transition: 0.2s ease;
+
         }
 
 
         /* GREEN COMPLETE */
 
         .complete-btn {
+
             background: #198754;
+
         }
 
 
         .complete-btn:hover {
+
             background: #157347;
 
-            color: #ffffff;
         }
 
 
         /* BLUE EDIT */
 
         .edit-btn {
+
             background: #0d6efd;
+
         }
 
 
         .edit-btn:hover {
+
             background: #0b5ed7;
 
-            color: #ffffff;
         }
 
 
         /* RED DELETE */
 
         .delete-btn {
+
             background: #dc3545;
+
         }
 
 
         .delete-btn:hover {
+
             background: #bb2d3b;
 
-            color: #ffffff;
         }
 
 
-        /* ==========================================
-           CLEAR BUTTON
-        ========================================== */
-
-        .clear-button {
-            border: 1px solid #dee2e6;
-
-            background: #ffffff;
-
-            color: #495057;
-
-            border-radius: 9px;
-
-            padding: 8px 14px;
-
-            font-size: 14px;
-
-            font-weight: 600;
-        }
-
-
-        .clear-button:hover {
-            background: #f8f9fa;
-        }
-
-
-        /* ==========================================
+        /* =====================================================
            EMPTY STATE
-        ========================================== */
+        ===================================================== */
 
         .empty-state {
+
             text-align: center;
 
-            padding: 55px 20px;
+            padding: 60px 20px;
 
             color: #6c757d;
+
         }
 
 
         .empty-icon {
-            width: 65px;
-            height: 65px;
 
-            border-radius: 16px;
+            width: 70px;
 
-            background: #f1f3f5;
+            height: 70px;
 
-            color: #adb5bd;
+            margin: 0 auto 15px;
+
+            border-radius: 18px;
 
             display: flex;
 
@@ -521,70 +703,110 @@
 
             justify-content: center;
 
-            font-size: 30px;
+            background: #f1f3f5;
 
-            margin: 0 auto 14px;
+            color: #adb5bd;
+
+            font-size: 32px;
+
         }
 
 
         .empty-state h4 {
+
             color: #343a40;
 
-            font-size: 18px;
+            font-size: 19px;
 
-            font-weight: 650;
         }
 
 
         .empty-state p {
-            font-size: 14px;
+
+            font-size: 15px;
+
         }
 
 
-        /* ==========================================
+        /* =====================================================
+           BUTTON
+        ===================================================== */
+
+        .clear-btn {
+
+            border: 1px solid #dce1e6;
+
+            background: #ffffff;
+
+            color: #495057;
+
+            border-radius: 10px;
+
+            padding: 10px 15px;
+
+            font-size: 15px;
+
+            font-weight: 600;
+
+        }
+
+
+        .clear-btn:hover {
+
+            background: #f8f9fa;
+
+        }
+
+
+        /* =====================================================
            MODAL
-        ========================================== */
+        ===================================================== */
 
         .modal-content {
+
             border: none;
 
             border-radius: 16px;
 
             overflow: hidden;
+
         }
 
 
         .modal-header {
+
+            padding: 18px 20px;
+
             border-bottom: 1px solid #e9ecef;
 
-            padding: 17px 20px;
-        }
-
-
-        .modal-title {
-            font-size: 18px;
-
-            font-weight: 650;
         }
 
 
         .modal-body {
-            padding: 25px 20px;
 
-            font-size: 14px;
+            padding: 25px;
+
+            font-size: 16px;
+
         }
 
 
         .modal-footer {
+
             border-top: 1px solid #e9ecef;
 
-            padding: 14px 20px;
+            padding: 15px 20px;
+
         }
 
 
-        .confirmation-icon {
-            width: 55px;
-            height: 55px;
+        .confirm-icon {
+
+            width: 60px;
+
+            height: 60px;
+
+            margin: 0 auto 15px;
 
             border-radius: 50%;
 
@@ -594,90 +816,127 @@
 
             justify-content: center;
 
-            font-size: 23px;
+            font-size: 25px;
 
-            margin: 0 auto 15px;
         }
 
 
-        .edit-confirm-icon {
+        .edit-icon {
+
             background: #e7f1ff;
 
             color: #0d6efd;
+
         }
 
 
-        .delete-confirm-icon {
+        .delete-icon {
+
             background: #ffe7ea;
 
             color: #dc3545;
+
         }
 
 
-        /* ==========================================
+        /* =====================================================
            FOOTER
-        ========================================== */
+        ===================================================== */
 
-        .footer-text {
-            font-size: 13px;
+        .footer {
+
+            text-align: center;
+
+            margin: 20px 0;
 
             color: #6c757d;
+
+            font-size: 14px;
+
         }
 
 
-        /* ==========================================
+        /* =====================================================
            MOBILE
-        ========================================== */
+        ===================================================== */
 
         @media (max-width: 768px) {
 
             .app-container {
+
                 margin: 15px auto;
+
             }
 
 
-            .app-header,
+            .app-header {
+
+                padding: 20px;
+
+            }
+
+
+            .header-content {
+
+                align-items: flex-start;
+
+                flex-direction: column;
+
+            }
+
+
+            .brand-title {
+
+                font-size: 25px;
+
+            }
+
+
+            .header-photo {
+
+                width: 75px;
+
+                height: 75px;
+
+            }
+
+
             .main-card {
-                padding: 18px;
+
+                padding: 20px;
+
             }
 
 
-            .profile-photo {
-                width: 72px;
-                height: 72px;
-            }
+            .center-profile-photo {
 
+                width: 115px;
 
-            .app-title {
-                font-size: 22px;
-            }
+                height: 115px;
 
-
-            .app-subtitle {
-                font-size: 13px;
-            }
-
-
-            .header-actions {
-                margin-top: 15px;
-
-                text-align: left !important;
             }
 
 
             .task-item {
+
                 align-items: flex-start;
+
             }
 
 
             .task-actions {
+
                 flex-wrap: wrap;
+
             }
 
 
-            .task-action {
-                width: 34px;
-                height: 34px;
+            .action-btn {
+
+                width: 36px;
+
+                height: 36px;
+
             }
 
         }
@@ -693,51 +952,48 @@
 <div class="app-container">
 
 
-    <!-- ==========================================
+    <!-- =====================================================
          HEADER
-    ========================================== -->
+    ====================================================== -->
 
-    <div class="app-header">
+    <header class="app-header">
 
-        <div class="row align-items-center">
-
-            <div class="col-md-8">
-
-                <div class="d-flex align-items-center gap-3">
+        <div class="header-content">
 
 
-                    <!-- YOUR PHOTO -->
-
-                    <div class="profile-photo">
-
-                        <img
-                            src="logo 2.png"
-                            alt="Arun Adhikari"
-                        >
-
-                    </div>
+            <div class="brand-section">
 
 
-                    <div>
+                <!-- HEADER LOGO -->
 
-                        <h1 class="app-title">
-                            TaskFlow
-                        </h1>
+                <div class="header-photo">
 
-                        <p class="app-subtitle">
-                            Organize your tasks and stay productive.
-                        </p>
+                    <img
+                        src="logo 2.png"
+                        alt="Arun Adhikari"
+                    >
 
-                        <div
-                            class="save-status"
-                            id="saveStatus"
-                        >
+                </div>
 
-                            <i class="bi bi-cloud-check"></i>
 
-                            All changes saved
+                <div>
 
-                        </div>
+                    <h1 class="brand-title">
+                        TaskFlow
+                    </h1>
+
+                    <p class="brand-subtitle">
+                        Organize your tasks and stay productive.
+                    </p>
+
+                    <div
+                        class="save-status"
+                        id="saveStatus"
+                    >
+
+                        <i class="bi bi-cloud-check"></i>
+
+                        All changes saved
 
                     </div>
 
@@ -746,37 +1002,67 @@
             </div>
 
 
-            <div class="col-md-4 text-md-end header-actions">
+            <button
+                class="clear-btn"
+                onclick="openClearConfirmation()"
+            >
 
-                <button
-                    class="clear-button"
-                    onclick="openClearModal()"
-                >
+                <i class="bi bi-eraser me-1"></i>
 
-                    <i class="bi bi-eraser me-1"></i>
+                Clear Completed
 
-                    Clear Completed
+            </button>
 
-                </button>
-
-            </div>
 
         </div>
 
-    </div>
+    </header>
 
 
 
-    <!-- ==========================================
-         MAIN CARD
-    ========================================== -->
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
 
-    <div class="main-card">
+    <main class="main-card">
 
 
-        <!-- ADD TASK -->
+        <!-- =================================================
+             CENTER PROFILE PHOTO
+        ================================================== -->
 
-        <div class="add-task-area">
+        <section class="center-profile">
+
+
+            <div class="center-profile-photo">
+
+                <img
+                    src="logo 2.png"
+                    alt="Arun Adhikari Profile"
+                >
+
+            </div>
+
+
+            <h2>
+                Arun Adhikari
+            </h2>
+
+
+            <p>
+                Personal Task Management
+            </p>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             ADD TASK
+        ================================================== -->
+
+        <section class="add-task-box">
 
             <form id="taskForm">
 
@@ -800,7 +1086,7 @@
 
                         <button
                             type="submit"
-                            class="btn btn-primary w-100 add-button"
+                            class="btn btn-primary w-100 add-btn"
                         >
 
                             <i class="bi bi-plus-lg me-1"></i>
@@ -816,100 +1102,101 @@
 
             </form>
 
-        </div>
+        </section>
 
 
 
-        <!-- ==========================================
+        <!-- =================================================
              STATISTICS
-        ========================================== -->
+        ================================================== -->
 
-        <div class="row g-3">
+        <section>
 
-
-            <div class="col-md-4">
-
-                <div class="stat-card">
-
-                    <div class="stat-title">
-                        Total Tasks
-                    </div>
-
-                    <div
-                        class="stat-number"
-                        id="totalCount"
-                    >
-                        0
-                    </div>
-
-                </div>
-
-            </div>
+            <div class="row g-3">
 
 
-            <div class="col-md-4">
+                <div class="col-md-4">
 
-                <div class="stat-card">
+                    <div class="stat-card">
 
-                    <div class="stat-title">
-                        Active Tasks
-                    </div>
+                        <div class="stat-label">
+                            Total Tasks
+                        </div>
 
-                    <div
-                        class="stat-number text-primary"
-                        id="activeCount"
-                    >
-                        0
+                        <div
+                            class="stat-number"
+                            id="totalCount"
+                        >
+                            0
+                        </div>
+
                     </div>
 
                 </div>
 
-            </div>
 
+                <div class="col-md-4">
 
-            <div class="col-md-4">
+                    <div class="stat-card">
 
-                <div class="stat-card">
+                        <div class="stat-label">
+                            Active Tasks
+                        </div>
 
-                    <div class="stat-title">
-                        Completed Tasks
-                    </div>
+                        <div
+                            class="stat-number text-primary"
+                            id="activeCount"
+                        >
+                            0
+                        </div>
 
-                    <div
-                        class="stat-number text-success"
-                        id="completedCount"
-                    >
-                        0
                     </div>
 
                 </div>
 
+
+                <div class="col-md-4">
+
+                    <div class="stat-card">
+
+                        <div class="stat-label">
+                            Completed Tasks
+                        </div>
+
+                        <div
+                            class="stat-number text-success"
+                            id="completedCount"
+                        >
+                            0
+                        </div>
+
+                    </div>
+
+                </div>
+
+
             </div>
 
-
-        </div>
-
+        </section>
 
 
-        <!-- ==========================================
+
+        <!-- =================================================
              PROGRESS
-        ========================================== -->
+        ================================================== -->
 
-        <div class="mt-4">
+        <section class="progress-section">
 
 
             <div class="d-flex justify-content-between mb-2">
 
-                <small class="text-muted">
+                <span>
                     Completion Progress
-                </small>
+                </span>
 
-                <small
-                    class="fw-semibold"
-                    id="progressText"
-                >
+                <strong id="progressText">
                     0%
-                </small>
+                </strong>
 
             </div>
 
@@ -925,15 +1212,15 @@
             </div>
 
 
-        </div>
+        </section>
 
 
 
-        <!-- ==========================================
-             SEARCH + FILTER
-        ========================================== -->
+        <!-- =================================================
+             SEARCH / FILTER
+        ================================================== -->
 
-        <div class="toolbar">
+        <section class="toolbar">
 
             <div class="row g-2">
 
@@ -952,7 +1239,7 @@
 
                 <div class="col-md-5">
 
-                    <div class="filter-wrapper">
+                    <div class="filter-box">
 
 
                         <button
@@ -986,26 +1273,26 @@
 
             </div>
 
-        </div>
+        </section>
 
 
 
-        <!-- ==========================================
+        <!-- =================================================
              TASK LIST
-        ========================================== -->
+        ================================================== -->
 
-        <div
+        <section
             id="taskList"
             class="task-list"
-        ></div>
+        ></section>
 
 
 
         <!-- EMPTY STATE -->
 
-        <div
+        <section
             id="emptyState"
-            class="empty-state d-none"
+            class="empty-state"
         >
 
             <div class="empty-icon">
@@ -1016,39 +1303,37 @@
 
 
             <h4>
-                No tasks found
+                No tasks yet
             </h4>
 
 
-            <p class="mb-0">
-                Add a task and start being productive.
+            <p>
+                Add your first task and start being productive.
             </p>
 
-        </div>
+        </section>
 
 
-    </div>
+    </main>
 
 
 
     <!-- FOOTER -->
 
-    <div class="text-center mt-4">
+    <footer class="footer">
 
-        <small class="footer-text">
-            TaskFlow &copy; 2026
-        </small>
+        TaskFlow © 2026 | Arun Adhikari
 
-    </div>
+    </footer>
 
 
 </div>
 
 
 
-<!-- ==========================================
+<!-- =====================================================
      EDIT CONFIRMATION MODAL
-========================================== -->
+====================================================== -->
 
 <div
     class="modal fade"
@@ -1064,24 +1349,20 @@
             <div class="modal-body text-center">
 
 
-                <div
-                    class="confirmation-icon edit-confirm-icon"
-                >
+                <div class="confirm-icon edit-icon">
 
-                    <i class="bi bi-pencil-square"></i>
+                    <i class="bi bi-pencil"></i>
 
                 </div>
 
 
-                <h5 class="fw-bold">
+                <h4 class="fw-bold">
                     Edit Task?
-                </h5>
+                </h4>
 
 
-                <p class="text-muted mb-0">
-
+                <p class="text-muted">
                     Are you sure you want to edit this task?
-
                 </p>
 
 
@@ -1092,7 +1373,7 @@
 
 
                 <button
-                    class="btn btn-light px-4"
+                    class="btn btn-light"
                     data-bs-dismiss="modal"
                 >
                     Cancel
@@ -1100,7 +1381,7 @@
 
 
                 <button
-                    class="btn btn-primary px-4"
+                    class="btn btn-primary"
                     id="confirmEditBtn"
                 >
                     Yes, Edit
@@ -1118,9 +1399,9 @@
 
 
 
-<!-- ==========================================
+<!-- =====================================================
      EDIT TASK MODAL
-========================================== -->
+====================================================== -->
 
 <div
     class="modal fade"
@@ -1135,17 +1416,9 @@
 
             <div class="modal-header">
 
-
                 <h5 class="modal-title">
-
-                    <i
-                        class="bi bi-pencil text-primary me-2"
-                    ></i>
-
                     Edit Task
-
                 </h5>
-
 
                 <button
                     type="button"
@@ -1153,17 +1426,14 @@
                     data-bs-dismiss="modal"
                 ></button>
 
-
             </div>
 
 
             <div class="modal-body">
 
 
-                <label class="form-label fw-semibold">
-
-                    Task name
-
+                <label class="form-label">
+                    Task
                 </label>
 
 
@@ -1171,7 +1441,6 @@
                     type="text"
                     id="editTaskInput"
                     class="form-control task-input"
-                    placeholder="Enter task..."
                 >
 
 
@@ -1208,9 +1477,9 @@
 
 
 
-<!-- ==========================================
+<!-- =====================================================
      DELETE CONFIRMATION MODAL
-========================================== -->
+====================================================== -->
 
 <div
     class="modal fade"
@@ -1226,28 +1495,22 @@
             <div class="modal-body text-center">
 
 
-                <div
-                    class="confirmation-icon delete-confirm-icon"
-                >
+                <div class="confirm-icon delete-icon">
 
                     <i class="bi bi-trash3"></i>
 
                 </div>
 
 
-                <h5 class="fw-bold">
+                <h4 class="fw-bold">
                     Delete Task?
-                </h5>
+                </h4>
 
 
-                <p class="text-muted mb-0">
-
+                <p class="text-muted">
                     Are you sure you want to delete this task?
-
                     <br>
-
                     This action cannot be undone.
-
                 </p>
 
 
@@ -1258,7 +1521,7 @@
 
 
                 <button
-                    class="btn btn-light px-4"
+                    class="btn btn-light"
                     data-bs-dismiss="modal"
                 >
                     Cancel
@@ -1266,7 +1529,7 @@
 
 
                 <button
-                    class="btn btn-danger px-4"
+                    class="btn btn-danger"
                     id="confirmDeleteBtn"
                 >
                     Yes, Delete
@@ -1284,9 +1547,9 @@
 
 
 
-<!-- ==========================================
+<!-- =====================================================
      CLEAR COMPLETED CONFIRMATION
-========================================== -->
+====================================================== -->
 
 <div
     class="modal fade"
@@ -1302,29 +1565,23 @@
             <div class="modal-body text-center">
 
 
-                <div
-                    class="confirmation-icon delete-confirm-icon"
-                >
+                <div class="confirm-icon delete-icon">
 
                     <i class="bi bi-eraser"></i>
 
                 </div>
 
 
-                <h5 class="fw-bold">
-
+                <h4 class="fw-bold">
                     Clear Completed Tasks?
-
-                </h5>
+                </h4>
 
 
                 <p
-                    class="text-muted mb-0"
+                    class="text-muted"
                     id="clearMessage"
                 >
-
                     Are you sure?
-
                 </p>
 
 
@@ -1335,7 +1592,7 @@
 
 
                 <button
-                    class="btn btn-light px-4"
+                    class="btn btn-light"
                     data-bs-dismiss="modal"
                 >
                     Cancel
@@ -1343,7 +1600,7 @@
 
 
                 <button
-                    class="btn btn-danger px-4"
+                    class="btn btn-danger"
                     id="confirmClearBtn"
                 >
                     Yes, Clear
@@ -1361,151 +1618,68 @@
 
 
 
-<!-- Bootstrap JS -->
+<!-- =====================================================
+     BOOTSTRAP JS
+====================================================== -->
 
 <script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
-</script>
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+></script>
 
 
 
 <script>
 
-    /* ==========================================
+    /* =====================================================
        LOCAL STORAGE
-    ========================================== */
+    ===================================================== */
 
-    const STORAGE_KEY =
-        "taskflow_tasks_v3";
-
-
-    function loadTasks() {
-
-        try {
-
-            const saved =
-                localStorage.getItem(
-                    STORAGE_KEY
-                );
+    const STORAGE_KEY = "arun_taskflow_tasks";
 
 
-            if (!saved) {
-
-                return [];
-
-            }
+    let tasks = JSON.parse(
+        localStorage.getItem(STORAGE_KEY)
+    ) || [];
 
 
-            const parsed =
-                JSON.parse(saved);
+    let currentFilter = "all";
 
 
-            return Array.isArray(parsed)
-                ? parsed
-                : [];
+    let currentSearch = "";
 
 
-        } catch (error) {
-
-            console.error(
-                "Error loading tasks:",
-                error
-            );
-
-            return [];
-
-        }
-
-    }
-
-
-    let tasks =
-        loadTasks();
-
-
-    let currentFilter =
-        "all";
-
-
-    let currentSearch =
-        "";
-
-
-    let selectedTaskId =
-        null;
+    let selectedTaskId = null;
 
 
 
-    /* ==========================================
-       SAVE
-    ========================================== */
-
-    function saveTasks() {
-
-        localStorage.setItem(
-            STORAGE_KEY,
-            JSON.stringify(tasks)
-        );
-
-
-        document.getElementById(
-            "saveStatus"
-        ).innerHTML = `
-
-            <i class="bi bi-check-circle-fill"></i>
-
-            Saved locally
-
-        `;
-
-    }
-
-
-
-    /* ==========================================
-       DOM
-    ========================================== */
+    /* =====================================================
+       ELEMENTS
+    ===================================================== */
 
     const taskForm =
-        document.getElementById(
-            "taskForm"
-        );
+        document.getElementById("taskForm");
 
 
     const taskInput =
-        document.getElementById(
-            "taskInput"
-        );
+        document.getElementById("taskInput");
 
 
     const taskList =
-        document.getElementById(
-            "taskList"
-        );
+        document.getElementById("taskList");
 
 
     const emptyState =
-        document.getElementById(
-            "emptyState"
-        );
+        document.getElementById("emptyState");
 
 
     const searchInput =
-        document.getElementById(
-            "searchInput"
-        );
-
-
-    const editTaskInput =
-        document.getElementById(
-            "editTaskInput"
-        );
+        document.getElementById("searchInput");
 
 
 
-    /* ==========================================
+    /* =====================================================
        MODALS
-    ========================================== */
+    ===================================================== */
 
     const editConfirmModal =
         new bootstrap.Modal(
@@ -1540,9 +1714,35 @@
 
 
 
-    /* ==========================================
+    /* =====================================================
+       SAVE TASKS
+    ===================================================== */
+
+    function saveTasks() {
+
+        localStorage.setItem(
+            STORAGE_KEY,
+            JSON.stringify(tasks)
+        );
+
+
+        document.getElementById(
+            "saveStatus"
+        ).innerHTML = `
+
+            <i class="bi bi-check-circle-fill"></i>
+
+            All changes saved
+
+        `;
+
+    }
+
+
+
+    /* =====================================================
        CREATE TASK
-    ========================================== */
+    ===================================================== */
 
     taskForm.addEventListener(
         "submit",
@@ -1564,7 +1764,7 @@
             }
 
 
-            const newTask = {
+            const task = {
 
                 id: Date.now(),
 
@@ -1578,16 +1778,13 @@
             };
 
 
-            tasks.unshift(
-                newTask
-            );
+            tasks.unshift(task);
 
 
             saveTasks();
 
 
-            taskInput.value =
-                "";
+            taskInput.value = "";
 
 
             renderTasks();
@@ -1600,100 +1797,96 @@
 
 
 
-    /* ==========================================
-       READ / DISPLAY
-    ========================================== */
+    /* =====================================================
+       READ TASKS
+    ===================================================== */
 
     function renderTasks() {
 
-        taskList.innerHTML =
-            "";
+        taskList.innerHTML = "";
 
 
         const filteredTasks =
-            tasks.filter(
-                task => {
+            tasks.filter(function(task) {
 
 
-                    const searchMatch =
-                        task.title
-                            .toLowerCase()
-                            .includes(
-                                currentSearch
-                                    .toLowerCase()
-                            );
+                const matchesSearch =
+                    task.title
+                        .toLowerCase()
+                        .includes(
+                            currentSearch.toLowerCase()
+                        );
 
 
-                    if (!searchMatch) {
+                if (!matchesSearch) {
 
-                        return false;
-
-                    }
-
-
-                    if (
-                        currentFilter ===
-                        "active"
-                    ) {
-
-                        return !task.completed;
-
-                    }
-
-
-                    if (
-                        currentFilter ===
-                        "completed"
-                    ) {
-
-                        return task.completed;
-
-                    }
-
-
-                    return true;
+                    return false;
 
                 }
-            );
+
+
+                if (
+                    currentFilter === "active"
+                ) {
+
+                    return !task.completed;
+
+                }
+
+
+                if (
+                    currentFilter === "completed"
+                ) {
+
+                    return task.completed;
+
+                }
+
+
+                return true;
+
+            });
 
 
         if (
-            filteredTasks.length ===
-            0
+            filteredTasks.length === 0
         ) {
 
-            emptyState.classList.remove(
-                "d-none"
-            );
+            emptyState.style.display =
+                "block";
 
         } else {
 
-            emptyState.classList.add(
-                "d-none"
-            );
+            emptyState.style.display =
+                "none";
 
         }
 
 
         filteredTasks.forEach(
-            task => {
+            function(task) {
 
 
-                const element =
+                const item =
                     document.createElement(
                         "div"
                     );
 
 
-                element.className =
-                    `task-item ${
-                        task.completed
-                            ? "completed"
-                            : ""
-                    }`;
+                item.className =
+                    "task-item";
 
 
-                element.innerHTML = `
+                if (task.completed) {
+
+                    item.classList.add(
+                        "completed-task"
+                    );
+
+                }
+
+
+                item.innerHTML = `
 
                     <div class="task-content">
 
@@ -1707,9 +1900,7 @@
 
                         <div class="task-date">
 
-                            <i
-                                class="bi bi-calendar3 me-1"
-                            ></i>
+                            <i class="bi bi-calendar3"></i>
 
                             ${formatDate(
                                 task.createdAt
@@ -1723,30 +1914,28 @@
                     <div class="task-actions">
 
 
+                        <!-- COMPLETE -->
+
                         <button
-                            class="task-action complete-btn"
-                            onclick="toggleComplete(${task.id})"
-                            title="${
-                                task.completed
-                                    ? "Mark Active"
-                                    : "Complete Task"
-                            }"
+                            class="action-btn complete-btn"
+                            onclick="completeTask(${task.id})"
+                            title="Complete Task"
                         >
 
-                            <i
-                                class="bi ${
-                                    task.completed
-                                        ? "bi-arrow-counterclockwise"
-                                        : "bi-check-lg"
-                                }"
-                            ></i>
+                            <i class="bi ${
+                                task.completed
+                                    ? "bi-arrow-counterclockwise"
+                                    : "bi-check-lg"
+                            }"></i>
 
                         </button>
 
 
+                        <!-- EDIT -->
+
                         <button
-                            class="task-action edit-btn"
-                            onclick="requestEdit(${task.id})"
+                            class="action-btn edit-btn"
+                            onclick="askEdit(${task.id})"
                             title="Edit Task"
                         >
 
@@ -1755,9 +1944,11 @@
                         </button>
 
 
+                        <!-- DELETE -->
+
                         <button
-                            class="task-action delete-btn"
-                            onclick="requestDelete(${task.id})"
+                            class="action-btn delete-btn"
+                            onclick="askDelete(${task.id})"
                             title="Delete Task"
                         >
 
@@ -1771,9 +1962,7 @@
                 `;
 
 
-                taskList.appendChild(
-                    element
-                );
+                taskList.appendChild(item);
 
             }
         );
@@ -1785,9 +1974,373 @@
 
 
 
-    /* ==========================================
+    /* =====================================================
+       COMPLETE / UNCOMPLETE
+    ===================================================== */
+
+    function completeTask(id) {
+
+        const task =
+            tasks.find(
+                function(item) {
+
+                    return item.id === id;
+
+                }
+            );
+
+
+        if (!task) {
+
+            return;
+
+        }
+
+
+        task.completed =
+            !task.completed;
+
+
+        saveTasks();
+
+
+        renderTasks();
+
+    }
+
+
+
+    /* =====================================================
+       EDIT CONFIRMATION
+    ===================================================== */
+
+    function askEdit(id) {
+
+        selectedTaskId = id;
+
+
+        editConfirmModal.show();
+
+    }
+
+
+    document
+        .getElementById(
+            "confirmEditBtn"
+        )
+        .addEventListener(
+            "click",
+            function() {
+
+
+                const task =
+                    tasks.find(
+                        function(item) {
+
+                            return item.id ===
+                                selectedTaskId;
+
+                        }
+                    );
+
+
+                if (!task) {
+
+                    return;
+
+                }
+
+
+                editConfirmModal.hide();
+
+
+                setTimeout(
+                    function() {
+
+                        document
+                            .getElementById(
+                                "editTaskInput"
+                            )
+                            .value =
+                            task.title;
+
+
+                        editTaskModal.show();
+
+
+                    },
+                    300
+                );
+
+            }
+        );
+
+
+
+    /* =====================================================
+       SAVE EDIT
+    ===================================================== */
+
+    document
+        .getElementById(
+            "saveEditBtn"
+        )
+        .addEventListener(
+            "click",
+            function() {
+
+
+                const input =
+                    document.getElementById(
+                        "editTaskInput"
+                    );
+
+
+                const newTitle =
+                    input.value.trim();
+
+
+                if (!newTitle) {
+
+                    input.focus();
+
+                    return;
+
+                }
+
+
+                const task =
+                    tasks.find(
+                        function(item) {
+
+                            return item.id ===
+                                selectedTaskId;
+
+                        }
+                    );
+
+
+                if (!task) {
+
+                    return;
+
+                }
+
+
+                task.title =
+                    newTitle;
+
+
+                saveTasks();
+
+
+                renderTasks();
+
+
+                editTaskModal.hide();
+
+
+                selectedTaskId =
+                    null;
+
+            }
+        );
+
+
+
+    /* =====================================================
+       DELETE CONFIRMATION
+    ===================================================== */
+
+    function askDelete(id) {
+
+        selectedTaskId = id;
+
+
+        deleteConfirmModal.show();
+
+    }
+
+
+    document
+        .getElementById(
+            "confirmDeleteBtn"
+        )
+        .addEventListener(
+            "click",
+            function() {
+
+
+                tasks =
+                    tasks.filter(
+                        function(task) {
+
+                            return task.id !==
+                                selectedTaskId;
+
+                        }
+                    );
+
+
+                saveTasks();
+
+
+                renderTasks();
+
+
+                deleteConfirmModal.hide();
+
+
+                selectedTaskId = null;
+
+            }
+        );
+
+
+
+    /* =====================================================
+       CLEAR COMPLETED
+    ===================================================== */
+
+    function openClearConfirmation() {
+
+        const completed =
+            tasks.filter(
+                function(task) {
+
+                    return task.completed;
+
+                }
+            ).length;
+
+
+        if (completed === 0) {
+
+            alert(
+                "There are no completed tasks."
+            );
+
+            return;
+
+        }
+
+
+        document.getElementById(
+            "clearMessage"
+        ).textContent =
+            `Are you sure you want to clear ${completed} completed task(s)?`;
+
+
+        clearConfirmModal.show();
+
+    }
+
+
+    document
+        .getElementById(
+            "confirmClearBtn"
+        )
+        .addEventListener(
+            "click",
+            function() {
+
+
+                tasks =
+                    tasks.filter(
+                        function(task) {
+
+                            return !task.completed;
+
+                        }
+                    );
+
+
+                saveTasks();
+
+
+                renderTasks();
+
+
+                clearConfirmModal.hide();
+
+            }
+        );
+
+
+
+    /* =====================================================
+       SEARCH
+    ===================================================== */
+
+    searchInput.addEventListener(
+        "input",
+        function() {
+
+            currentSearch =
+                this.value.trim();
+
+
+            renderTasks();
+
+        }
+    );
+
+
+
+    /* =====================================================
+       FILTER
+    ===================================================== */
+
+    document
+        .querySelectorAll(
+            ".filter-btn"
+        )
+        .forEach(
+            function(button) {
+
+
+                button.addEventListener(
+                    "click",
+                    function() {
+
+
+                        document
+                            .querySelectorAll(
+                                ".filter-btn"
+                            )
+                            .forEach(
+                                function(btn) {
+
+                                    btn.classList.remove(
+                                        "active"
+                                    );
+
+                                }
+                            );
+
+
+                        this.classList.add(
+                            "active"
+                        );
+
+
+                        currentFilter =
+                            this.dataset.filter;
+
+
+                        renderTasks();
+
+                    }
+                );
+
+            }
+        );
+
+
+
+    /* =====================================================
        STATISTICS
-    ========================================== */
+    ===================================================== */
 
     function updateStatistics() {
 
@@ -1797,8 +2350,11 @@
 
         const completed =
             tasks.filter(
-                task =>
-                    task.completed
+                function(task) {
+
+                    return task.completed;
+
+                }
             ).length;
 
 
@@ -1850,435 +2406,37 @@
 
 
 
-    /* ==========================================
-       COMPLETE
-    ========================================== */
-
-    function toggleComplete(id) {
-
-        const task =
-            tasks.find(
-                task =>
-                    task.id === id
-            );
-
-
-        if (!task) {
-
-            return;
-
-        }
-
-
-        task.completed =
-            !task.completed;
-
-
-        saveTasks();
-
-
-        renderTasks();
-
-    }
-
-
-
-    /* ==========================================
-       EDIT
-    ========================================== */
-
-    function requestEdit(id) {
-
-        selectedTaskId =
-            id;
-
-
-        editConfirmModal.show();
-
-    }
-
-
-    document
-        .getElementById(
-            "confirmEditBtn"
-        )
-        .addEventListener(
-            "click",
-            function() {
-
-
-                const task =
-                    tasks.find(
-                        task =>
-                            task.id ===
-                            selectedTaskId
-                    );
-
-
-                if (!task) {
-
-                    return;
-
-                }
-
-
-                editConfirmModal.hide();
-
-
-                setTimeout(
-                    function() {
-
-                        editTaskInput.value =
-                            task.title;
-
-
-                        editTaskModal.show();
-
-
-                        setTimeout(
-                            function() {
-
-                                editTaskInput.focus();
-
-                                editTaskInput.select();
-
-                            },
-                            300
-                        );
-
-                    },
-                    300
-                );
-
-            }
-        );
-
-
-
-    /* ==========================================
-       SAVE EDIT
-    ========================================== */
-
-    document
-        .getElementById(
-            "saveEditBtn"
-        )
-        .addEventListener(
-            "click",
-            function() {
-
-
-                const newTitle =
-                    editTaskInput.value.trim();
-
-
-                if (!newTitle) {
-
-                    editTaskInput.focus();
-
-                    return;
-
-                }
-
-
-                const task =
-                    tasks.find(
-                        task =>
-                            task.id ===
-                            selectedTaskId
-                    );
-
-
-                if (!task) {
-
-                    return;
-
-                }
-
-
-                task.title =
-                    newTitle;
-
-
-                saveTasks();
-
-
-                renderTasks();
-
-
-                editTaskModal.hide();
-
-
-                selectedTaskId =
-                    null;
-
-            }
-        );
-
-
-
-    /* ENTER TO SAVE EDIT */
-
-    editTaskInput.addEventListener(
-        "keydown",
-        function(event) {
-
-            if (
-                event.key ===
-                "Enter"
-            ) {
-
-                document
-                    .getElementById(
-                        "saveEditBtn"
-                    )
-                    .click();
-
-            }
-
-        }
-    );
-
-
-
-    /* ==========================================
-       DELETE
-    ========================================== */
-
-    function requestDelete(id) {
-
-        selectedTaskId =
-            id;
-
-
-        deleteConfirmModal.show();
-
-    }
-
-
-    document
-        .getElementById(
-            "confirmDeleteBtn"
-        )
-        .addEventListener(
-            "click",
-            function() {
-
-
-                if (
-                    selectedTaskId ===
-                    null
-                ) {
-
-                    return;
-
-                }
-
-
-                tasks =
-                    tasks.filter(
-                        task =>
-                            task.id !==
-                            selectedTaskId
-                    );
-
-
-                saveTasks();
-
-
-                renderTasks();
-
-
-                deleteConfirmModal.hide();
-
-
-                selectedTaskId =
-                    null;
-
-            }
-        );
-
-
-
-    /* ==========================================
-       CLEAR COMPLETED
-    ========================================== */
-
-    function openClearModal() {
-
-        const completedCount =
-            tasks.filter(
-                task =>
-                    task.completed
-            ).length;
-
-
-        if (
-            completedCount ===
-            0
-        ) {
-
-            alert(
-                "There are no completed tasks to clear."
-            );
-
-            return;
-
-        }
-
-
-        document.getElementById(
-            "clearMessage"
-        ).textContent =
-
-            `Are you sure you want to clear ${completedCount} completed task(s)?`;
-
-
-        clearConfirmModal.show();
-
-    }
-
-
-    document
-        .getElementById(
-            "confirmClearBtn"
-        )
-        .addEventListener(
-            "click",
-            function() {
-
-
-                tasks =
-                    tasks.filter(
-                        task =>
-                            !task.completed
-                    );
-
-
-                saveTasks();
-
-
-                renderTasks();
-
-
-                clearConfirmModal.hide();
-
-            }
-        );
-
-
-
-    /* ==========================================
-       SEARCH
-    ========================================== */
-
-    searchInput.addEventListener(
-        "input",
-        function() {
-
-            currentSearch =
-                this.value.trim();
-
-
-            renderTasks();
-
-        }
-    );
-
-
-
-    /* ==========================================
-       FILTER
-    ========================================== */
-
-    document
-        .querySelectorAll(
-            ".filter-btn"
-        )
-        .forEach(
-            button => {
-
-
-                button.addEventListener(
-                    "click",
-                    function() {
-
-
-                        document
-                            .querySelectorAll(
-                                ".filter-btn"
-                            )
-                            .forEach(
-                                btn => {
-
-                                    btn.classList.remove(
-                                        "active"
-                                    );
-
-                                }
-                            );
-
-
-                        this.classList.add(
-                            "active"
-                        );
-
-
-                        currentFilter =
-                            this.dataset.filter;
-
-
-                        renderTasks();
-
-                    }
-                );
-
-            }
-        );
-
-
-
-    /* ==========================================
+    /* =====================================================
        DATE
-    ========================================== */
+    ===================================================== */
 
-    function formatDate(
-        dateString
-    ) {
+    function formatDate(date) {
 
-        return new Date(
-            dateString
-        ).toLocaleDateString(
-            undefined,
-            {
-                year: "numeric",
-
-                month: "short",
-
-                day: "numeric"
-            }
-        );
+        return new Date(date)
+            .toLocaleDateString(
+                "en-US",
+                {
+                    year: "numeric",
+                    month: "short",
+                    day: "numeric"
+                }
+            );
 
     }
 
 
 
-    /* ==========================================
+    /* =====================================================
        SECURITY
-    ========================================== */
+    ===================================================== */
 
-    function escapeHTML(
-        value
-    ) {
+    function escapeHTML(text) {
 
         const div =
-            document.createElement(
-                "div"
-            );
+            document.createElement("div");
 
 
-        div.textContent =
-            value;
+        div.textContent = text;
 
 
         return div.innerHTML;
@@ -2287,9 +2445,9 @@
 
 
 
-    /* ==========================================
+    /* =====================================================
        INITIAL LOAD
-    ========================================== */
+    ===================================================== */
 
     renderTasks();
 
