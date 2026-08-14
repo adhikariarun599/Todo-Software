@@ -1,153 +1,230 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="light">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>TaskFlow - Arun Adhikari</title>
 
 <!-- Bootstrap 5 -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
 <!-- Bootstrap Icons -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-* {
-    box-sizing: border-box;
+:root {
+    --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    --card-bg: rgba(255, 255, 255, 0.95);
+    --border-color: rgba(226, 232, 240, 0.9);
+    --text-primary: #0f172a;
+    --text-secondary: #64748b;
+    --accent-blue: #3b82f6;
+    --accent-green: #10b981;
+    --shadow-sm: 0 2px 4px rgba(0,0,0,0.04);
+    --shadow-md: 0 8px 20px rgba(0,0,0,0.06);
 }
+
+[data-bs-theme="dark"] {
+    --bg-gradient: linear-gradient(135deg, #0f172a 0%, #020617 100%);
+    --card-bg: rgba(30, 41, 59, 0.9);
+    --border-color: rgba(51, 65, 85, 0.9);
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --shadow-sm: 0 2px 4px rgba(0,0,0,0.2);
+    --shadow-md: 0 8px 20px rgba(0,0,0,0.4);
+}
+
+* { box-sizing: border-box; }
 
 body {
     margin: 0;
     min-height: 100vh;
-    background: #f5f7fa;
-    color: #212529;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 16px;
+    background: var(--bg-gradient);
+    color: var(--text-primary);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    padding: 12px 8px;
 }
 
 .app-container {
-    max-width: 1150px;
-    margin: 30px auto;
-    padding: 0 18px;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
-/* MAIN CARD */
 .main-card {
-    background: #fff;
-    border: 1px solid #e2e6ea;
+    background: var(--card-bg);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border-color);
     border-radius: 20px;
-    padding: 30px;
-    box-shadow: 0 5px 20px rgba(0,0,0,.04);
+    padding: 20px 16px;
+    box-shadow: var(--shadow-md);
+    position: relative;
 }
 
-/* CENTER PROFILE */
+/* THEME TOGGLE BUTTON */
+.theme-toggle-btn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid var(--border-color);
+    background: var(--card-bg);
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* COMPACT HEADER */
 .center-profile {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 16px;
 }
 
 .center-profile-photo {
-    width: 145px;
-    height: 145px;
+    width: 65px;
+    height: 65px;
     border-radius: 50%;
-    overflow: hidden;
-    margin: 5px auto 15px;
-    background: #eee;
-    border: 5px solid white;
-    box-shadow: 0 6px 20px rgba(0,0,0,.16);
+    margin: 0 auto 6px;
+    padding: 2px;
+    background: linear-gradient(135deg, #3b82f6, #10b981);
 }
 
 .center-profile-photo img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center;
-    display: block;
+    border-radius: 50%;
+    border: 2px solid var(--card-bg);
 }
 
 .center-profile h2 {
     margin: 0;
-    font-size: 24px;
-    font-weight: 700;
+    font-size: 18px;
+    font-weight: 800;
 }
 
 .center-profile p {
-    margin: 5px 0 0;
-    color: #6c757d;
-    font-size: 15px;
+    margin: 2px 0 0;
+    color: var(--text-secondary);
+    font-size: 12px;
+    font-weight: 500;
 }
 
-/* ADD TASK */
+/* ADD TASK BOX */
 .add-task-box {
-    background: #f8f9fa;
-    border: 1px solid #e4e7eb;
-    border-radius: 15px;
-    padding: 20px;
-    margin-bottom: 25px;
+    background: rgba(148, 163, 184, 0.08);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 4px;
+    margin-bottom: 14px;
 }
 
 .task-input {
-    height: 52px;
-    border-radius: 10px;
-    font-size: 16px;
+    height: 42px;
+    border: none;
+    background: transparent;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-primary);
+    padding-left: 12px;
+}
+
+.task-input:focus {
+    box-shadow: none;
+    background: transparent;
+    color: var(--text-primary);
 }
 
 .add-btn {
-    height: 52px;
+    height: 42px;
     border-radius: 10px;
-    font-size: 16px;
+    font-size: 14px;
+    font-weight: 700;
+    background: #2563eb;
+    border: none;
+}
+
+/* SINGLE COMPACT STATS BAR */
+.stats-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 10px;
+    margin-bottom: 14px;
+    box-shadow: var(--shadow-sm);
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
     font-weight: 600;
 }
 
-/* STATISTICS */
-.stat-card {
-    background: white;
-    border: 1px solid #e2e6ea;
-    border-radius: 14px;
-    padding: 20px;
+.stat-item .stat-label { color: var(--text-secondary); }
+.stat-item .stat-number { font-weight: 800; font-size: 15px; }
+
+.stat-divider {
+    width: 1px;
+    height: 18px;
+    background: var(--border-color);
 }
 
-.stat-label {
-    color: #6c757d;
-    font-size: 15px;
-    margin-bottom: 6px;
-}
-
-.stat-number {
-    font-size: 27px;
-    font-weight: 700;
-}
-
-/* PROGRESS */
-.progress-section {
-    margin-top: 28px;
-}
+/* COMPACT PROGRESS BAR */
+.progress-section { margin-bottom: 16px; }
+.progress-info { font-size: 12px; font-weight: 600; color: var(--text-secondary); margin-bottom: 4px; }
 
 .progress {
-    height: 9px;
-    border-radius: 20px;
+    height: 6px;
+    border-radius: 10px;
+    background: rgba(148, 163, 184, 0.2);
 }
 
-/* SEARCH */
-.toolbar {
-    margin-top: 30px;
-    margin-bottom: 22px;
+.progress-bar {
+    background: #10b981;
+    border-radius: 10px;
+    transition: width 0.3s ease;
 }
+
+/* SEARCH & FILTER TOOLBAR */
+.toolbar { margin-bottom: 14px; }
 
 .search-input {
-    height: 48px;
+    height: 38px;
     border-radius: 10px;
-    font-size: 16px;
+    border: 1px solid var(--border-color);
+    background: var(--card-bg);
+    color: var(--text-primary);
+    padding-left: 34px;
+    font-size: 13px;
+}
+
+.search-wrapper { position: relative; }
+.search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-secondary);
+    font-size: 14px;
 }
 
 .filter-box {
     display: flex;
-    gap: 4px;
-    background: #f1f3f5;
+    gap: 2px;
+    background: rgba(148, 163, 184, 0.15);
     border-radius: 10px;
-    padding: 4px;
-    height: 48px;
+    padding: 3px;
+    height: 38px;
 }
 
 .filter-btn {
@@ -155,170 +232,86 @@ body {
     border: none;
     background: transparent;
     border-radius: 8px;
-    color: #6c757d;
-    font-size: 15px;
-    font-weight: 600;
+    color: var(--text-secondary);
+    font-size: 12px;
+    font-weight: 700;
 }
 
 .filter-btn.active {
-    background: white;
-    color: #0d6efd;
-    box-shadow: 0 2px 7px rgba(0,0,0,.08);
+    background: var(--card-bg);
+    color: var(--accent-blue);
+    box-shadow: var(--shadow-sm);
 }
 
-/* TASK LIST */
-.task-list {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
+/* COMPACT TASK LIST */
+.task-list { display: flex; flex-direction: column; gap: 8px; }
 
 .task-item {
     display: flex;
     align-items: center;
-    gap: 15px;
-    padding: 17px;
-    background: white;
-    border: 1px solid #e1e5e9;
-    border-radius: 14px;
-    transition: .2s;
+    gap: 10px;
+    padding: 10px 12px;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
 }
 
-.task-item:hover {
-    box-shadow: 0 5px 16px rgba(0,0,0,.06);
-}
-
-.task-content {
-    flex: 1;
-    min-width: 0;
-}
+.task-content { flex: 1; min-width: 0; }
 
 .task-title {
     margin: 0;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 600;
+    color: var(--text-primary);
     word-break: break-word;
 }
 
 .task-date {
-    margin-top: 6px;
-    font-size: 13px;
-    color: #8a9299;
+    margin-top: 2px;
+    font-size: 11px;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 4px;
 }
 
 .completed-task {
-    background: #f7fff9;
+    opacity: 0.6;
+    background: rgba(16, 185, 129, 0.05);
 }
 
-.completed-task .task-title {
-    text-decoration: line-through;
-    color: #8b9299;
-}
+.completed-task .task-title { text-decoration: line-through; }
 
-/* BUTTONS */
-.task-actions {
-    display: flex;
-    gap: 7px;
-}
+/* ACTION BUTTONS */
+.task-actions { display: flex; gap: 4px; }
 
 .action-btn {
-    width: 40px;
-    height: 40px;
+    width: 32px;
+    height: 32px;
     border: none;
-    border-radius: 9px;
+    border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
-    font-size: 16px;
+    font-size: 13px;
 }
 
-/* GREEN */
-.complete-btn {
-    background: #198754;
-}
+.complete-btn { background: rgba(16, 185, 129, 0.12); color: #10b981; }
+.edit-btn { background: rgba(59, 130, 246, 0.12); color: #3b82f6; }
+.delete-btn { background: rgba(239, 68, 68, 0.12); color: #ef4444; }
 
-.complete-btn:hover {
-    background: #157347;
-}
+.empty-state { text-align: center; padding: 30px 10px; color: var(--text-secondary); }
+.empty-icon { font-size: 24px; margin-bottom: 4px; }
 
-/* BLUE */
-.edit-btn {
-    background: #0d6efd;
-}
-
-.edit-btn:hover {
-    background: #0b5ed7;
-}
-
-/* RED */
-.delete-btn {
-    background: #dc3545;
-}
-
-.delete-btn:hover {
-    background: #bb2d3b;
-}
-
-/* EMPTY */
-.empty-state {
-    text-align: center;
-    padding: 60px 20px;
-    color: #6c757d;
-}
-
-.empty-icon {
-    width: 70px;
-    height: 70px;
-    margin: auto auto 15px;
-    border-radius: 18px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #f1f3f5;
-    font-size: 32px;
-    color: #adb5bd;
-}
-
-/* CLEAR BUTTON */
 .clear-btn {
-    border: 1px solid #dce1e6;
-    background: white;
-    color: #495057;
+    border: 1px solid var(--border-color);
+    background: var(--card-bg);
+    color: var(--text-secondary);
     border-radius: 10px;
-    padding: 10px 15px;
-    font-size: 15px;
+    padding: 6px 12px;
+    font-size: 12px;
     font-weight: 600;
-}
-
-/* MOBILE */
-@media(max-width:768px) {
-
-    .app-container {
-        margin: 15px auto;
-    }
-
-    .main-card {
-        padding: 20px;
-    }
-
-    .center-profile-photo {
-        width: 120px;
-        height: 120px;
-    }
-
-    .task-item {
-        align-items: flex-start;
-    }
-
-    .task-actions {
-        flex-wrap: wrap;
-    }
-
-    .action-btn {
-        width: 36px;
-        height: 36px;
-    }
 }
 </style>
 </head>
@@ -329,794 +322,313 @@ body {
 
 <main class="main-card">
 
-<!-- PROFILE PHOTO -->
+<!-- THEME TOGGLE BUTTON -->
+<button class="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Theme">
+    <i class="bi bi-moon-stars-fill" id="themeIcon"></i>
+</button>
+
+<!-- CENTER PROFILE HEADER -->
 <section class="center-profile">
-
     <div class="center-profile-photo">
-        <img src="logo 2.png" alt="Arun Adhikari">
+        <img src="photo.png" alt="Arun Adhikari" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Arun+Adhikari&background=3b82f6&color=fff&size=128';">
     </div>
-
     <h2>Arun Adhikari</h2>
-
-    <p>Personal Task Management</p>
-
+    <p>TaskFlow System</p>
 </section>
 
-
-<!-- ADD TASK -->
+<!-- ADD TASK INPUT -->
 <section class="add-task-box">
-
 <form id="taskForm">
-
-<div class="row g-2">
-
-    <div class="col-md-9">
-        <input
-            type="text"
-            id="taskInput"
-            class="form-control task-input"
-            placeholder="What needs to be done?"
-            autocomplete="off"
-        >
+<div class="row g-1 align-items-center">
+    <div class="col-8 col-sm-9">
+        <input type="text" id="taskInput" class="form-control task-input" placeholder="Add a new task..." autocomplete="off">
     </div>
-
-    <div class="col-md-3">
-        <button
-            type="submit"
-            class="btn btn-primary w-100 add-btn"
-        >
-            <i class="bi bi-plus-lg"></i>
-            Add Task
+    <div class="col-4 col-sm-3">
+        <button type="submit" class="btn btn-primary w-100 add-btn">
+            <i class="bi bi-plus-lg"></i> Add
         </button>
     </div>
-
 </div>
-
 </form>
-
 </section>
 
-
-<!-- STATISTICS -->
-<section>
-
-<div class="row g-3">
-
-    <div class="col-md-4">
-        <div class="stat-card">
-            <div class="stat-label">Total Tasks</div>
-            <div class="stat-number" id="totalCount">0</div>
-        </div>
+<!-- SINGLE COMPACT STATS BAR -->
+<section class="stats-bar">
+    <div class="stat-item">
+        <span class="stat-label">Total:</span>
+        <span class="stat-number" id="totalCount">0</span>
     </div>
-
-    <div class="col-md-4">
-        <div class="stat-card">
-            <div class="stat-label">Active Tasks</div>
-            <div class="stat-number text-primary" id="activeCount">0</div>
-        </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+        <span class="stat-label text-primary">Active:</span>
+        <span class="stat-number text-primary" id="activeCount">0</span>
     </div>
-
-    <div class="col-md-4">
-        <div class="stat-card">
-            <div class="stat-label">Completed Tasks</div>
-            <div class="stat-number text-success" id="completedCount">0</div>
-        </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+        <span class="stat-label text-success">Done:</span>
+        <span class="stat-number text-success" id="completedCount">0</span>
     </div>
-
-</div>
-
 </section>
 
-
-<!-- PROGRESS -->
+<!-- PROGRESS BAR -->
 <section class="progress-section">
-
-<div class="d-flex justify-content-between mb-2">
-
-    <span>Completion Progress</span>
-
+<div class="d-flex justify-content-between progress-info">
+    <span>Progress</span>
     <strong id="progressText">0%</strong>
-
 </div>
-
 <div class="progress">
-
-    <div
-        id="progressBar"
-        class="progress-bar bg-success"
-        style="width:0%"
-    ></div>
-
+    <div id="progressBar" class="progress-bar" style="width:0%"></div>
 </div>
-
 </section>
 
-
-<!-- SEARCH AND FILTER -->
+<!-- TOOLBAR -->
 <section class="toolbar">
-
 <div class="row g-2">
-
-    <div class="col-md-7">
-
-        <input
-            type="text"
-            id="searchInput"
-            class="form-control search-input"
-            placeholder="Search your tasks..."
-        >
-
+    <div class="col-7 search-wrapper">
+        <i class="bi bi-search search-icon"></i>
+        <input type="text" id="searchInput" class="form-control search-input" placeholder="Search...">
     </div>
-
-    <div class="col-md-5">
-
+    <div class="col-5">
         <div class="filter-box">
-
-            <button class="filter-btn active" data-filter="all">
-                All
-            </button>
-
-            <button class="filter-btn" data-filter="active">
-                Active
-            </button>
-
-            <button class="filter-btn" data-filter="completed">
-                Completed
-            </button>
-
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="active">Active</button>
+            <button class="filter-btn" data-filter="completed">Done</button>
         </div>
-
     </div>
-
 </div>
-
 </section>
-
 
 <!-- TASK LIST -->
 <section id="taskList" class="task-list"></section>
 
-
-<!-- EMPTY -->
+<!-- EMPTY STATE -->
 <section id="emptyState" class="empty-state">
-
-    <div class="empty-icon">
-        <i class="bi bi-clipboard-check"></i>
-    </div>
-
-    <h4>No tasks yet</h4>
-
-    <p>Add your first task and start being productive.</p>
-
+    <div class="empty-icon"><i class="bi bi-check2-circle"></i></div>
+    <h6 class="fw-bold mb-1">No tasks here</h6>
 </section>
 
-
 <!-- CLEAR COMPLETED -->
-<div class="text-end mt-4">
-
-    <button
-        class="clear-btn"
-        onclick="clearCompleted()"
-    >
-        <i class="bi bi-eraser"></i>
-        Clear Completed
+<div class="text-end mt-3">
+    <button class="clear-btn" onclick="clearCompleted()">
+        <i class="bi bi-trash3 me-1"></i> Clear Done
     </button>
-
 </div>
 
 </main>
-
 </div>
-
 
 <!-- EDIT MODAL -->
-<div class="modal fade" id="editModal">
-
+<div class="modal fade" id="editModal" tabindex="-1">
 <div class="modal-dialog modal-dialog-centered">
-
-<div class="modal-content">
-
-<div class="modal-header">
-
-    <h5 class="modal-title">Edit Task</h5>
-
-    <button
-        type="button"
-        class="btn-close"
-        data-bs-dismiss="modal"
-    ></button>
-
+<div class="modal-content border-0 shadow" style="border-radius: 16px; background: var(--card-bg); color: var(--text-primary);">
+<div class="modal-header border-0 pb-0">
+    <h6 class="modal-title fw-bold">Edit Task</h6>
+    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+</div>
+<div class="modal-body py-2">
+    <input type="text" id="editInput" class="form-control search-input" style="padding-left: 12px;">
+</div>
+<div class="modal-footer border-0 pt-0">
+    <button class="btn btn-sm btn-light rounded-3" data-bs-dismiss="modal">Cancel</button>
+    <button class="btn btn-sm btn-primary rounded-3" onclick="saveEdit()">Save</button>
+</div>
+</div>
+</div>
 </div>
 
-<div class="modal-body">
-
-    <input
-        type="text"
-        id="editInput"
-        class="form-control task-input"
-    >
-
-</div>
-
-<div class="modal-footer">
-
-    <button
-        class="btn btn-secondary"
-        data-bs-dismiss="modal"
-    >
-        Cancel
-    </button>
-
-    <button
-        class="btn btn-primary"
-        onclick="saveEdit()"
-    >
-        Save Changes
-    </button>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-
-<!-- BOOTSTRAP -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-
 <script>
+/* THEME TOGGLE LOGIC */
+function toggleTheme() {
+    const htmlEl = document.documentElement;
+    const currentTheme = htmlEl.getAttribute('data-bs-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    
+    htmlEl.setAttribute('data-bs-theme', newTheme);
+    localStorage.setItem('taskflow_theme', newTheme);
+    updateThemeIcon(newTheme);
+}
 
-/* =========================
-   STORAGE
-========================= */
+function updateThemeIcon(theme) {
+    const themeIcon = document.getElementById('themeIcon');
+    themeIcon.className = theme === 'dark' ? 'bi bi-sun-fill' : 'bi bi-moon-stars-fill';
+}
 
+(function initTheme() {
+    const savedTheme = localStorage.getItem('taskflow_theme') || 'light';
+    document.documentElement.setAttribute('data-bs-theme', savedTheme);
+    updateThemeIcon(savedTheme);
+})();
+
+/* PERMANENT LOCALSTORAGE TASK LOGIC */
 const STORAGE_KEY = "arun_taskflow_tasks";
-
-let tasks =
-    JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
-
+let tasks = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
 let currentFilter = "all";
-
 let currentSearch = "";
-
 let editingId = null;
 
-
-/* =========================
-   ELEMENTS
-========================= */
-
-const taskForm =
-    document.getElementById("taskForm");
-
-const taskInput =
-    document.getElementById("taskInput");
-
-const taskList =
-    document.getElementById("taskList");
-
-const emptyState =
-    document.getElementById("emptyState");
-
-const searchInput =
-    document.getElementById("searchInput");
-
-
-/* =========================
-   SAVE
-========================= */
+const taskForm = document.getElementById("taskForm");
+const taskInput = document.getElementById("taskInput");
+const taskList = document.getElementById("taskList");
+const emptyState = document.getElementById("emptyState");
+const searchInput = document.getElementById("searchInput");
 
 function saveTasks() {
-
-    localStorage.setItem(
-        STORAGE_KEY,
-        JSON.stringify(tasks)
-    );
-
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
 }
-
-
-/* =========================
-   ADD TASK
-========================= */
 
 taskForm.addEventListener("submit", function(e) {
-
     e.preventDefault();
-
-    const title =
-        taskInput.value.trim();
-
+    const title = taskInput.value.trim();
     if (!title) {
-
         alert("Please enter a task.");
-
         taskInput.focus();
-
         return;
     }
-
     tasks.unshift({
-
         id: Date.now(),
-
         title: title,
-
         completed: false,
-
         createdAt: new Date().toISOString()
-
     });
-
     saveTasks();
-
     taskInput.value = "";
-
     renderTasks();
-
     taskInput.focus();
-
 });
 
-
-/* =========================
-   DISPLAY TASKS
-========================= */
-
 function renderTasks() {
-
     taskList.innerHTML = "";
+    let filtered = tasks.filter(task => {
+        const searchMatch = task.title.toLowerCase().includes(currentSearch.toLowerCase());
+        if (!searchMatch) return false;
+        if (currentFilter === "active") return !task.completed;
+        if (currentFilter === "completed") return task.completed;
+        return true;
+    });
 
-    let filtered =
-        tasks.filter(task => {
-
-            const searchMatch =
-                task.title
-                    .toLowerCase()
-                    .includes(
-                        currentSearch.toLowerCase()
-                    );
-
-            if (!searchMatch) return false;
-
-            if (
-                currentFilter === "active"
-            ) {
-                return !task.completed;
-            }
-
-            if (
-                currentFilter === "completed"
-            ) {
-                return task.completed;
-            }
-
-            return true;
-
-        });
-
-
-    emptyState.style.display =
-        filtered.length === 0
-            ? "block"
-            : "none";
-
+    emptyState.style.display = filtered.length === 0 ? "block" : "none";
 
     filtered.forEach(task => {
-
-        const item =
-            document.createElement("div");
-
-        item.className =
-            "task-item" +
-            (task.completed
-                ? " completed-task"
-                : "");
-
-
+        const item = document.createElement("div");
+        item.className = "task-item" + (task.completed ? " completed-task" : "");
         item.innerHTML = `
-
             <div class="task-content">
-
-                <p class="task-title">
-                    ${escapeHTML(task.title)}
-                </p>
-
+                <p class="task-title">${escapeHTML(task.title)}</p>
                 <div class="task-date">
-                    <i class="bi bi-calendar3"></i>
-                    ${formatDate(task.createdAt)}
+                    <i class="bi bi-clock"></i> ${formatDate(task.createdAt)}
                 </div>
-
             </div>
-
-
             <div class="task-actions">
-
-                <!-- GREEN COMPLETE -->
-
-                <button
-                    class="action-btn complete-btn"
-                    onclick="completeTask(${task.id})"
-                    title="Complete"
-                >
-                    <i class="bi ${
-                        task.completed
-                        ? "bi-arrow-counterclockwise"
-                        : "bi-check-lg"
-                    }"></i>
+                <button class="action-btn complete-btn" onclick="completeTask(${task.id})" title="Complete">
+                    <i class="bi ${task.completed ? "bi-arrow-counterclockwise" : "bi-check-lg"}"></i>
                 </button>
-
-
-                <!-- BLUE EDIT -->
-
-                <button
-                    class="action-btn edit-btn"
-                    onclick="editTask(${task.id})"
-                    title="Edit"
-                >
+                <button class="action-btn edit-btn" onclick="editTask(${task.id})" title="Edit">
                     <i class="bi bi-pencil"></i>
                 </button>
-
-
-                <!-- RED DELETE -->
-
-                <button
-                    class="action-btn delete-btn"
-                    onclick="deleteTask(${task.id})"
-                    title="Delete"
-                >
+                <button class="action-btn delete-btn" onclick="deleteTask(${task.id})" title="Delete">
                     <i class="bi bi-trash3"></i>
                 </button>
-
             </div>
         `;
-
-
         taskList.appendChild(item);
-
     });
-
 
     updateStats();
-
 }
-
-
-/* =========================
-   COMPLETE
-========================= */
 
 function completeTask(id) {
-
-    const task =
-        tasks.find(t => t.id === id);
-
+    const task = tasks.find(t => t.id === id);
     if (!task) return;
-
-    task.completed =
-        !task.completed;
-
+    task.completed = !task.completed;
     saveTasks();
-
     renderTasks();
-
 }
-
-
-/* =========================
-   EDIT
-========================= */
 
 function editTask(id) {
-
-    const task =
-        tasks.find(t => t.id === id);
-
+    const task = tasks.find(t => t.id === id);
     if (!task) return;
-
-    const confirmEdit =
-        confirm(
-            "Are you sure you want to edit this task?"
-        );
-
-    if (!confirmEdit) return;
-
     editingId = id;
-
-    document.getElementById(
-        "editInput"
-    ).value = task.title;
-
-
-    const modal =
-        new bootstrap.Modal(
-            document.getElementById("editModal")
-        );
-
+    document.getElementById("editInput").value = task.title;
+    const modal = new bootstrap.Modal(document.getElementById("editModal"));
     modal.show();
-
 }
-
-
-/* =========================
-   SAVE EDIT
-========================= */
 
 function saveEdit() {
-
-    const newTitle =
-        document.getElementById(
-            "editInput"
-        ).value.trim();
-
-
+    const newTitle = document.getElementById("editInput").value.trim();
     if (!newTitle) {
-
         alert("Task cannot be empty.");
-
         return;
-
     }
-
-
-    const task =
-        tasks.find(t => t.id === editingId);
-
-
+    const task = tasks.find(t => t.id === editingId);
     if (!task) return;
-
-
     task.title = newTitle;
-
     saveTasks();
-
     renderTasks();
-
-
-    const modalElement =
-        document.getElementById(
-            "editModal"
-        );
-
-
-    const modal =
-        bootstrap.Modal.getInstance(
-            modalElement
-        );
-
-
+    const modalElement = document.getElementById("editModal");
+    const modal = bootstrap.Modal.getInstance(modalElement);
     modal.hide();
-
     editingId = null;
-
 }
-
-
-/* =========================
-   DELETE
-========================= */
 
 function deleteTask(id) {
-
-    const confirmDelete =
-        confirm(
-            "Are you sure you want to delete this task?"
-        );
-
-    if (!confirmDelete) return;
-
-
-    tasks =
-        tasks.filter(
-            task => task.id !== id
-        );
-
-
+    if (!confirm("Are you sure you want to delete this task?")) return;
+    tasks = tasks.filter(task => task.id !== id);
     saveTasks();
-
     renderTasks();
-
 }
-
-
-/* =========================
-   CLEAR COMPLETED
-========================= */
 
 function clearCompleted() {
-
-    const completed =
-        tasks.filter(
-            task => task.completed
-        ).length;
-
-
+    const completed = tasks.filter(task => task.completed).length;
     if (completed === 0) {
-
-        alert(
-            "There are no completed tasks."
-        );
-
+        alert("There are no completed tasks.");
         return;
-
     }
-
-
-    const confirmClear =
-        confirm(
-            `Are you sure you want to clear ${completed} completed task(s)?`
-        );
-
-
-    if (!confirmClear) return;
-
-
-    tasks =
-        tasks.filter(
-            task => !task.completed
-        );
-
-
+    if (!confirm(`Are you sure you want to clear ${completed} completed task(s)?`)) return;
+    tasks = tasks.filter(task => !task.completed);
     saveTasks();
-
     renderTasks();
-
 }
 
+searchInput.addEventListener("input", function() {
+    currentSearch = this.value;
+    renderTasks();
+});
 
-/* =========================
-   SEARCH
-========================= */
-
-searchInput.addEventListener(
-    "input",
-    function() {
-
-        currentSearch =
-            this.value;
-
+document.querySelectorAll(".filter-btn").forEach(button => {
+    button.addEventListener("click", function() {
+        document.querySelectorAll(".filter-btn").forEach(btn => btn.classList.remove("active"));
+        this.classList.add("active");
+        currentFilter = this.dataset.filter;
         renderTasks();
-
-    }
-);
-
-
-/* =========================
-   FILTER
-========================= */
-
-document
-    .querySelectorAll(".filter-btn")
-    .forEach(button => {
-
-        button.addEventListener(
-            "click",
-            function() {
-
-                document
-                    .querySelectorAll(".filter-btn")
-                    .forEach(btn =>
-                        btn.classList.remove("active")
-                    );
-
-
-                this.classList.add("active");
-
-
-                currentFilter =
-                    this.dataset.filter;
-
-
-                renderTasks();
-
-            }
-        );
-
     });
-
-
-/* =========================
-   STATISTICS
-========================= */
+});
 
 function updateStats() {
+    const total = tasks.length;
+    const completed = tasks.filter(task => task.completed).length;
+    const active = total - completed;
+    const percentage = total === 0 ? 0 : Math.round((completed / total) * 100);
 
-    const total =
-        tasks.length;
-
-
-    const completed =
-        tasks.filter(
-            task => task.completed
-        ).length;
-
-
-    const active =
-        total - completed;
-
-
-    const percentage =
-        total === 0
-        ? 0
-        : Math.round(
-            completed / total * 100
-        );
-
-
-    document.getElementById(
-        "totalCount"
-    ).textContent = total;
-
-
-    document.getElementById(
-        "activeCount"
-    ).textContent = active;
-
-
-    document.getElementById(
-        "completedCount"
-    ).textContent = completed;
-
-
-    document.getElementById(
-        "progressText"
-    ).textContent =
-        percentage + "%";
-
-
-    document.getElementById(
-        "progressBar"
-    ).style.width =
-        percentage + "%";
-
+    document.getElementById("totalCount").textContent = total;
+    document.getElementById("activeCount").textContent = active;
+    document.getElementById("completedCount").textContent = completed;
+    document.getElementById("progressText").textContent = percentage + "%";
+    document.getElementById("progressBar").style.width = percentage + "%";
 }
-
-
-/* =========================
-   DATE
-========================= */
 
 function formatDate(date) {
-
-    return new Date(date)
-        .toLocaleDateString(
-            "en-US",
-            {
-                year: "numeric",
-                month: "short",
-                day: "numeric"
-            }
-        );
-
+    return new Date(date).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" });
 }
-
-
-/* =========================
-   SECURITY
-========================= */
 
 function escapeHTML(text) {
-
-    const div =
-        document.createElement("div");
-
+    const div = document.createElement("div");
     div.textContent = text;
-
     return div.innerHTML;
-
 }
 
-
-/* =========================
-   START
-========================= */
-
 renderTasks();
-
 </script>
-
 </body>
 </html>
